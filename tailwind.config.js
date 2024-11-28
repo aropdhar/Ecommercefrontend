@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        white_color: "var(--white-color)",
+        white_color: "var(--white_color)",
         black_363738: "var(--black_363738)",
         white_F5F5F5: "var(--white_F5F5F5)",
         white_FEFAF1: "var(--white_FEFAF1)",
@@ -21,20 +21,21 @@ export default {
         hoverbutton_A0BCE0: "var(--hoverbutton_A0BCE0)",
         
       },
-      fontFamily:{
-        popins: "var(--Poppins)",
-        Inter: "var(--Inter)",
+    },
+    fontFamily:{
+      poppins: "var(--Poppins)",
+      Inter: "var(--Inter)",
 
-      },
-      container: {
-        center: true,
-        padding: {
-          // DEFAULT: '1rem',
-          // sm: '2rem',
-          // lg: '4rem',
-          // xl: '5rem',
-          // '2xl': '6rem',
-        },
+    },
+
+    container: {
+      center:true,
+      padding: {
+        // DEFAULT: '1rem',
+        // sm: '2rem',
+        // lg: '4rem',
+        // xl: '5rem',
+        // '2xl': '6rem',
       },
     },
   },
