@@ -22,6 +22,24 @@
   ul,li,ol{
     list-style: none;
   }
+  .cartno{
+    position: relative;
+  }
+
+  .cartno::after{
+    content: "2";
+    background-color: var(--button_DB4444);
+    position: absolute;
+    left: 39%;
+    top: -50%;
+    line-height: 25px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 50%;
+    color: var(--white_color)
+  }
 }
 
 @layer utilities{

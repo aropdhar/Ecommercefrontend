@@ -1,11 +1,31 @@
-import React from 'react'
-import { IoMdSearch } from 'react-icons/io';
+import React, { useEffect, useRef, useState } from 'react'
+import { BsCart3 } from 'react-icons/bs';
+import { CiHeart, CiLogout, CiStar } from 'react-icons/ci';
+import { IoIosCloseCircleOutline, IoMdSearch } from 'react-icons/io';
+import { LuUser } from 'react-icons/lu';
+import { PiShoppingBagOpenLight } from 'react-icons/pi';
 import { NavLink } from 'react-router-dom';
 
 
 
 
 const Navbar = () => {
+
+  const [userlog , setUserlog] = useState(false);
+  const useractionRef = useRef(null)
+
+  // user button on/off section
+
+  useEffect(()=>{
+     window.addEventListener("click" ,  (event)=>{
+        if(useractionRef.current.contains(event.target)){
+          setUserlog(!userlog)
+        }else{
+          setUserlog(false)
+        }
+        
+     })
+  }, [userlog])
  
     const navItem = [
         {
@@ -56,13 +76,60 @@ const Navbar = () => {
                  
                 </div>
 
-                <div className='basis-1/3 '>
+                <div className='basis-1/3 flex items-center justify-between'>
                   <div className='flex relative items-center'>
                       <input type="text" placeholder='What are you looking for?' className='bg-white_F5F5F5 py-[7px] pl-[20px] pr-[32px] rounded-[5px]'/>
-                      <IoMdSearch className='absolute top-1/1 text-[24px] right-[195px] text-text_000000 cursor-pointer'/>
+                      <IoMdSearch className='absolute top-1/1 text-[24px] right-[5px] text-text_000000 cursor-pointer'/>
+                  </div>
+                  <div className='flex items-center gap-[30px] cursor-pointer'>
+                     <span className='text-[32px] text-text_000000 '>
+                        <CiHeart />
+                     </span>
+                     <span className='text-[32px] text-text_000000 cursor-pointer cartno'>
+                        <BsCart3 />
+                     </span>
+                     <span className='text-[30px] text-white_color bg-button_DB4444 p-[6px] rounded-[50%] cursor-pointer' ref={useractionRef}>
+                        <LuUser />
+                     </span>
                   </div>
                 </div>
             </div>
+            {userlog && 
+              <div className='absolute bg-text_7D8184 pt-[18px] pr-[12px] pb-[10px] pl-[20px] rounded-[4px] top-[20%] right-[134px]'>
+
+              <div className='text-white_FAFAFA hover:bg-white  p-[5px] hover:p-[5px] hover:text-text_000000 transition-all hover:rounded-[5px] flex items-center gap-x-[16px] mb-[13px] cursor-pointer'>
+                <span className='text-[32px]'>
+                  <LuUser />
+                </span>
+                <h1 className='text-[14px] font-poppins  font-normal leading-[21px]'>Manage My Account</h1>
+              </div>
+              <div className='text-white_FAFAFA flex items-center gap-x-[16px] mb-[13px] cursor-pointer hover:bg-white  p-[5px] hover:p-[5px] hover:text-text_000000 transition-all hover:rounded-[5px]'>
+                <span className='text-[32px]'>
+                  <PiShoppingBagOpenLight />
+                </span>
+                <h1 className='text-[14px] font-poppins  font-normal leading-[21px]'>My Order</h1>
+              </div>
+              <div className='text-white_FAFAFA flex items-center gap-x-[16px] mb-[13px] cursor-pointer hover:bg-white  p-[5px] hover:p-[5px] hover:text-text_000000 transition-all hover:rounded-[5px]'>
+                <span className='text-[32px]'>
+                    <IoIosCloseCircleOutline />
+                </span>
+                <h1 className='text-[14px] font-poppins  font-normal leading-[21px]'>My Cancellations</h1>
+              </div>
+              <div className='text-white_FAFAFA flex items-center gap-x-[16px] mb-[13px] cursor-pointer hover:bg-white  p-[5px] hover:p-[5px] hover:text-text_000000 transition-all hover:rounded-[5px]'>
+                <span className='text-[32px]'>
+                    <CiStar />
+                </span>
+                <h1 className='text-[14px] font-poppins  font-normal leading-[21px]'>My Reviews</h1>
+              </div>
+              <div className='text-white_FAFAFA flex items-center gap-x-[16px] mb-[13px] cursor-pointer hover:bg-white  p-[5px] hover:p-[5px] hover:text-text_000000 transition-all hover:rounded-[5px]'>
+                <span className='text-[32px]'>
+                  <CiLogout />
+                </span>
+                <h1 className='text-[14px] font-poppins  font-normal leading-[21px]'>Log Out</h1>
+              </div>
+
+              </div>
+            }
         </div>
       </div>
     </>
