@@ -12,21 +12,23 @@ import { NavLink } from 'react-router-dom';
 const Navbar = () => {
 
   const [userlog , setUserlog] = useState(false);
-  const useractionRef = useRef(null)
-
+  const useractionRef = useRef(null);
+  
+  
   // user button on/off section
 
-  useEffect(()=>{
-     window.addEventListener("click" ,  (event)=>{
-        if(useractionRef.current.contains(event.target)){
-          setUserlog(!userlog)
-        }else{
-          setUserlog(false)
-        }
-        
-     })
-  }, [userlog])
- 
+    useEffect(()=>{
+    window.addEventListener("click" ,  (event)=>{
+    if(useractionRef.current.contains(event.target)){
+    setUserlog(!userlog)
+    }else{
+    setUserlog(false)
+    }
+
+    })
+    }, [userlog])
+    
+  
     const navItem = [
         {
             id: 1,
@@ -49,7 +51,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className='pt-[40px] pb-[16px] border-[1.5px] border-b-text_7D8184'>
+      <div className='pt-[40px] pb-[16px] border-b-[1.5px] border-b-text_7D8184'>
         <div className='container'>
             <div className='flex items-center justify-between'>
                 <div>
