@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { category } from '../../../data/Data'
 import { TfiAngleRight } from 'react-icons/tfi'
 import "slick-carousel/slick/slick.css";
@@ -7,6 +7,8 @@ import banner from '../../assets/banner.png'
 
 const Homepage = () => {
 
+  const [aftervalue , setafterValue] = useState(0)
+
     const settings = {
         dots: true,
         infinite: true,
@@ -14,6 +16,9 @@ const Homepage = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: false,
+        afterChange: function(currentSlide) {
+          setafterValue(currentSlide);
+        },
         appendDots: dots => (
             <div
               style={{
@@ -29,24 +34,35 @@ const Homepage = () => {
               <ul style={{ margin: "0px" , display: 'flex'}}> {dots} </ul>
             </div>
           ),
-          customPaging: i => (
-            <div
+          customPaging: (i) => (
+            i == aftervalue ? ( <div
               style={{
-                width: "30px",
-                height: "30px",
-                color: "blue",
+                width: "20px",
+                height: "20px",
+                backgroundColor: "#DB4444",
+                marginRight: "10px",
                 borderRadius: "50%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                columnGap: "10px",
-                border: "1px blue solid"
+                cursor: "pointer",
+                border: "2px solid #ffff"
               }}
             >
-              {i + 1}
-            </div>
+            </div>) : ( <div
+              style={{
+                width: "20px",
+                height: "20px",
+                borderRadius: "50%",
+                backgroundColor: "#ffff",
+                marginRight: "10px",
+                opacity: "0.5",
+                cursor: "pointer",
+              }}
+            >
+            </div>)
+           
           )
+          
       };
+
 
   return (
     <>
@@ -67,15 +83,13 @@ const Homepage = () => {
                   }
                </ul>
             </div>
-            <div className='w-[77%] h-[344px] pl-[45px] pt-[20px]'>
+            <div className='w-[77%] h-[344px] pl-[45px] pt-[15px]'>
                 <Slider {...settings}>
                     {[...new Array(10)].map((item , index)=>(
                        <div>
                        <img src={banner} alt={banner} className='w-full h-full object-cover'/>
                        </div>
-                    ))}
-                   
-                    
+                    ))} 
                 </Slider>
             </div>
          </div>

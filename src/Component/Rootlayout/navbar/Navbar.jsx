@@ -97,7 +97,7 @@ const Navbar = () => {
                 </div>
             </div>
             {userlog && 
-              <div className='absolute bg-text_7D8184 pt-[18px] pr-[12px] pb-[10px] pl-[20px] rounded-[4px] top-[20%] right-[134px]'>
+              <div className='absolute z-[1000] bg-text_7D8184 pt-[18px] pr-[12px] pb-[10px] pl-[20px] rounded-[4px] top-[20%] right-[134px]'>
 
               <div className='text-white_FAFAFA hover:bg-white  p-[5px] hover:p-[5px] hover:text-text_000000 transition-all hover:rounded-[5px] flex items-center gap-x-[16px] mb-[13px] cursor-pointer'>
                 <span className='text-[32px]'>
