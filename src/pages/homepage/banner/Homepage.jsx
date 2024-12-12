@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { category } from '../../../data/Data'
+import { category } from '../../../../data/Data'
 import { TfiAngleRight } from 'react-icons/tfi'
 import "slick-carousel/slick/slick.css";
 import Slider from "react-slick";
-import banner from '../../assets/banner.png'
+import banner from '../../../assets/banner.png'
 
 const Homepage = () => {
 

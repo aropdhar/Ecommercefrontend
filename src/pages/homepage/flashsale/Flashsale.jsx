@@ -1,6 +1,6 @@
 import React from 'react'
-import Heading from '../../Component/commoncomponent/Heading'
-import Timer from '../../Component/commoncomponent/Timer'
+import Heading from '../../../Component/commoncomponent/Heading'
+import Timer from '../../../Component/commoncomponent/Timer'
 
 const Flashsale = () => {
   return (
@@ -12,6 +12,7 @@ const Flashsale = () => {
                     <Heading title={"Today’s"} description={"Flash Sales"}/>
                     <Timer/>
                 </div>
+                
             </div>
           
         </div>

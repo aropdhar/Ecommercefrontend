@@ -1,7 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { RxDotsVertical } from 'react-icons/rx'
 
 const Timer = () => {
+   const [time , setTime] = useState(3 * 24 * 60 * 60 * 1000);
+   
+   useEffect(()=>{
+
+     setTimeout(()=>{
+       setTime(time - 1000);
+     },1000)
+
+   },[time]);
+
+   // time format
+   
+   const formatdate = (milisecond)=>{
+      const total_second = parseInt(Math.floor(milisecond / 1000));
+      const total_minute = parseInt(Math.floor(total_second / 60));
+      const total_hours = parseInt(Math.floor(total_minute / 60));
+      const days = parseInt(Math.floor(total_hours / 24));
+      const second = parseInt(Math.floor(total_second % 60));
+      const minute = parseInt(Math.floor(total_minute % 60));
+      const hours = parseInt(Math.floor(total_hours % 60));
+
+      return {second , minute , hours , days};
+      
+   }
+
+   const {second , minute , hours , days} = formatdate(time)
+
   return (
     <>
        <div className='flex items-center gap-x-[30px]'>
@@ -9,7 +36,7 @@ const Timer = () => {
            <div className='flex flex-col items-start gap-y-[8px]'>
               <span className='font-poppins font-medium text-[12px] leading-[18px] text-text_000000'>Days</span>
               <div className='flex items-center gap-[12px]'>
-                <p className='font-Inter font-bold text-[32px] leading-[30px]'>03</p>
+                <p className='font-Inter font-bold text-[32px] leading-[30px]'>{days < 10 ? `0${days}` : days}</p>
                 <span className='text-[25px] font-semibold block text-red'> <RxDotsVertical /></span>
               </div>
            
@@ -18,7 +45,7 @@ const Timer = () => {
            <div className='flex flex-col items-start gap-y-[8px]'>
               <span className='font-poppins font-medium text-[12px] leading-[18px] text-text_000000'>Hours</span>
               <div className='flex items-center gap-[12px]'>
-                <p className='font-Inter font-bold text-[32px] leading-[30px]'>23</p>
+                <p className='font-Inter font-bold text-[32px] leading-[30px]'>{hours}</p>
                 <span className='text-[25px] font-semibold block text-red'> <RxDotsVertical /></span>
               </div>
            
@@ -27,7 +54,7 @@ const Timer = () => {
            <div className='flex flex-col items-start gap-y-[8px]'>
               <span className='font-poppins font-medium text-[12px] leading-[18px] text-text_000000'>Minutes</span>
               <div className='flex items-center gap-[12px]'>
-                <p className='font-Inter font-bold text-[32px] leading-[30px]'>19</p>
+                <p className='font-Inter font-bold text-[32px] leading-[30px]'>{minute}</p>
                 <span className='text-[25px] font-semibold block text-red'> <RxDotsVertical /></span>
               </div>
            
@@ -36,7 +63,7 @@ const Timer = () => {
            <div className='flex flex-col items-start gap-y-[8px]'>
               <span className='font-poppins font-medium text-[12px] leading-[18px] text-text_000000'>Seconds</span>
 
-              <p className='font-Inter font-bold text-[32px] leading-[30px]'>56</p>
+              <p className='font-Inter font-bold text-[32px] leading-[30px]'>{second}</p>
             
            </div>
 
