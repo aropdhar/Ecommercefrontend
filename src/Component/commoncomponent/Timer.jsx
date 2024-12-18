@@ -2,17 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { RxDotsVertical } from 'react-icons/rx'
 
 const Timer = () => {
-   const [time , setTime] = useState(3 * 24 * 60 * 60 * 1000);
+   const [time , setTime] = useState(6 * 1000);
    
-   useEffect(()=>{
+   useEffect(() => {
+    const worker = new Worker(
+      new URL("../../CountDownWorker.js", import.meta.url)
+    );
+    worker.postMessage(time);
+    worker.onmessage= (e) =>{
+      setTime(e.data);
+    }
 
-     setTimeout(()=>{
-       setTime(time - 1000);
-     },1000)
+  }, []);
+   
 
-   },[time]);
-
-   // time format
+  //  // time format
    
    const formatdate = (milisecond)=>{
       const total_second = parseInt(Math.floor(milisecond / 1000));
@@ -36,7 +40,7 @@ const Timer = () => {
            <div className='flex flex-col items-start gap-y-[8px]'>
               <span className='font-poppins font-medium text-[12px] leading-[18px] text-text_000000'>Days</span>
               <div className='flex items-center gap-[12px]'>
-                <p className='font-Inter font-bold text-[32px] leading-[30px]'>{days < 10 ? `0${days}` : days}</p>
+                <p className='font-Inter font-bold text-[32px] leading-[30px]'> {days < 10 ? `0${days}` : days} </p>
                 <span className='text-[25px] font-semibold block text-red'> <RxDotsVertical /></span>
               </div>
            
@@ -62,9 +66,7 @@ const Timer = () => {
 
            <div className='flex flex-col items-start gap-y-[8px]'>
               <span className='font-poppins font-medium text-[12px] leading-[18px] text-text_000000'>Seconds</span>
-
               <p className='font-Inter font-bold text-[32px] leading-[30px]'>{second}</p>
-            
            </div>
 
         </div> 
