@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { RxDotsVertical } from 'react-icons/rx'
 
 const Timer = () => {
-   const [time , setTime] = useState(6 * 1000);
+   const [time , setTime] = useState(3 * 24 * 60 * 60 * 1000);
    
    useEffect(() => {
     const worker = new Worker(

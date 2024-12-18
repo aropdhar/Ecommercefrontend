@@ -18,14 +18,13 @@ const Navbar = () => {
   // user button on/off section
 
     useEffect(()=>{
-    window.addEventListener("click" ,  (event)=>{
-    if(useractionRef.current.contains(event.target)){
-    setUserlog(!userlog)
-    }else{
-    setUserlog(false)
-    }
-
-    })
+        window.addEventListener("click" ,  (event)=>{
+            if(useractionRef.current.contains(event.target)){
+            setUserlog(!userlog)
+            }else{
+            setUserlog(false)
+            }
+        })
     }, [userlog])
     
   
