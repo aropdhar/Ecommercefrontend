@@ -49,7 +49,7 @@ const Productcard = () => {
           ))
 
           }
-          <h3 className='text-button_DB4444 font-poppins text-[16px] font-normal inline-block leading-[24px]'>{`(${([...new Array(5)]).length})`}</h3>
+          <h3 className='text-button_DB4444 font-poppins text-[16px] font-normal inline-block leading-[24px]'>{`(${[...new Array(5)].length})`}</h3>
            
         </div>
       </div>
