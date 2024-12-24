@@ -1,69 +1,27 @@
 import React from 'react'
-import Heading from '../../../Component/commoncomponent/Heading'
-import Timer from '../../../Component/commoncomponent/Timer'
 import Productcard from '../../../Component/commoncomponent/Productcard'
-import Slider from "react-slick";
+import Productcommonlayouts from '../../../Component/commoncomponent/Productcommonlayouts';
 
 
-const Flashsale = () => {
-  
-  const settings = {
-    dots: false,
-    infinite: true,
-    slidesToShow: 4,
-    slidesToScroll: 3,
-    autoplay: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />
-  };
-
-  function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "red" }}
-        onClick={onClick}
-      />
-    );
-  }
-  
-  function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "green" }}
-        onClick={onClick}
-      />
-    );
-  }
-  
-    
+const Flashsale = () => { 
   return (
     <>
-    <div className='my-[140px]'>
-        <div className='container'>
-            <div>
-                <div className='flex items-end gap-x-[87px]'>
-                    <Heading title={"Today’s"} description={"Flash Sales"}/>
-                    <Timer/>
-                </div>
-                <div className="slider-container">
-                  <Slider {...settings}>
-                      {[...new Array(6)].map((_ , index)=>(
-                        <div className='pr-[24px]'>
-                          <Productcard/>
-                        </div>
-                      ))
-                      }
-                    
-                  </Slider>
-                </div>
-               
-                
-            </div>
-          
+      
+      <div className="container">
+        <div className="flex flex-col items-center border-b-[1px] border-b-black_363738 mb-10">
+          <Productcommonlayouts
+            Productcard={Productcard}
+            timeStamp={true}
+            timeofOffer={1}
+            isArrowsTrue={true}
+            heading="Today's"
+            description="Flash Sales"
+          />
+          <div className="pb-20 ">
+            <button className="px-[48px] py-4 bg-button_DB4444 rounded text-md font-popins font-medium text-white_color hover:opacity-75 cursor-pointer ">
+              View All Products
+            </button>
+          </div>
         </div>
     </div>
     </>
