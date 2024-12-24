@@ -1,7 +1,7 @@
 import React from 'react'
 import { CiHeart, CiStar } from 'react-icons/ci'
 import { FiEye } from 'react-icons/fi'
-import joystickimg from '../../assets/joystick.png'
+import joystickimg from '../../../assets/joystick.png'
 import { IoStar } from 'react-icons/io5'
 
 

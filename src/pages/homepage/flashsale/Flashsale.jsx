@@ -1,6 +1,6 @@
 import React from 'react'
-import Productcard from '../../../Component/commoncomponent/Productcard'
-import Productcommonlayouts from '../../../Component/commoncomponent/Productcommonlayouts';
+import Productcard from '../../../Component/commoncomponent/product/Productcard'
+import Productcommonlayouts from '../../../Component/commoncomponent/product/Productcommonlayouts';
 
 
 const Flashsale = () => { 

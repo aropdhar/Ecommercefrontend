@@ -1,11 +1,11 @@
 import React, { useRef } from 'react'
 import Productcard from './Productcard'
-import Heading from './Heading'
-import Timer from './Timer'
+import Heading from '../heading/Heading'
+import Timer from '../timer/Timer'
 import Slider from "react-slick";
 import { IoMdArrowBack } from 'react-icons/io';
 import { IoArrowForward } from 'react-icons/io5';
-import ProductSkeleton from '../../helpers/ProductSkeleton';
+import ProductSkeleton from '../../../helpers/ProductSkeleton';
 
 const Productcommonlayouts = ({
   ProductCard = () => <ProductSkeleton/>,
@@ -17,6 +17,8 @@ const Productcommonlayouts = ({
   
 }) => {
   const sliderRef = useRef(null);
+  
+  
   const settings = {
     dots: false,
     infinite: true,
