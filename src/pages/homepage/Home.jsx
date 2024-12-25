@@ -5,6 +5,7 @@ import { Link, NavLink } from 'react-router-dom'
 import Homepage from './banner/Homepage'
 import Flashsale from './flashsale/Flashsale'
 import ProductSkeleton from '../../helpers/ProductSkeleton'
+import Category from './category/Category'
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <Navbar/>
       <Homepage/>
       <Flashsale/>
+      <Category/>
     </>
   )
 }

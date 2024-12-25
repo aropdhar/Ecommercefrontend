@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react' 
 import { category } from '../../../../data/Data'
 import { TfiAngleRight } from 'react-icons/tfi'
 import "slick-carousel/slick/slick.css";
@@ -87,7 +87,7 @@ const Homepage = () => {
                 <Slider {...settings}>
                     {[...new Array(10)].map((item , index)=>(
                        <div>
-                       <img src={banner} alt={banner} className='w-full h-full object-cover'/>
+                        <img src={banner} alt={banner} className='w-full h-full object-cover'/>
                        </div>
                     ))} 
                 </Slider>

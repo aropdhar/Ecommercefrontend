@@ -8,12 +8,13 @@ import { IoArrowForward } from 'react-icons/io5';
 import ProductSkeleton from '../../../helpers/ProductSkeleton';
 
 const Productcommonlayouts = ({
-  ProductCard = () => <ProductSkeleton/>,
+  Productcard = () => <ProductSkeleton/>,
   timeStamp = false,
   timeofOffer = 0,
   isArrowsTrue = false,
   heading = "today's",
   description = "flash sale",
+  partialItem = 4,
   
 }) => {
   const sliderRef = useRef(null);
@@ -22,7 +23,7 @@ const Productcommonlayouts = ({
   const settings = {
     dots: false,
     infinite: true,
-    slidesToShow: 4,
+    slidesToShow: partialItem || 4,
     slidesToScroll: 3,
     autoplay: true,
     
@@ -38,13 +39,13 @@ const Productcommonlayouts = ({
 
   return (
     <>
-      <div className='my-[140px]'>
+      <div className='mt-[140px]'>
         <div className='container'>
 
           {/* Flashsale section */}
             <div className='flex items-end justify-between'>
               <div className='flex items-end gap-x-[87px]'>
-                <Heading title={"Today’s"} description={"Flash Sales"}/>
+                <Heading title={heading} description={description}/>
                 {timeStamp && <Timer timeofOffer={timeofOffer}/>}
                 
               </div>
@@ -78,16 +79,13 @@ const Productcommonlayouts = ({
             <div className="slider-container">
               <Slider ref={sliderRef} {...settings}>
                 {[...new Array(6)].map((_ , index)=>(
-                  <div className='pr-[24px]'>
+                  <div className={partialItem > 4 ? 'pr-10' :'pr-[24px]'}>
                     <Productcard/>
                   </div>
                 ))
                 }
               </Slider>
             </div>
-          
-            
-               
         </div>
       </div>
     </>
