@@ -16,6 +16,7 @@ const Flashsale = () => {
             isArrowsTrue={true}
             heading="Today's"
             description="Flash Sales"
+            componentData = {[...new Array(6)]}
           />
           <div className="pb-20 mt-[80px]">
             <button className="px-[48px] py-4 bg-button_DB4444 rounded text-md font-popins font-medium text-white_color hover:opacity-75 cursor-pointer ">

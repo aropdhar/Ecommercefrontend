@@ -45,7 +45,7 @@ const Productcard = () => {
           {[...new Array(5)].map((_ ,index)=>(
              <span className='text-yellow-500'>
               <IoStar/>
-            </span>
+             </span>
           ))
 
           }
