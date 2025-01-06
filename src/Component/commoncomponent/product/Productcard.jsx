@@ -6,14 +6,15 @@ import { IoStar } from 'react-icons/io5'
 
 
 
-const Productcard = () => {
+const Productcard = ({itemData}) => {
+  
   return (
     <div className='mt-[34px]'>
       <div className='w-full'>
          <div className='bg-white_F5F5F5 relative px-[12px] pt-[12px] pb-[49px] cursor-pointer group'>
 
          <div className='flex items-start justify-between '>
-            <span className='bg-[red] inline-block rounded-[4px] py-[4px] px-[12px] text-white_color font-normal font-poppins text-[12px]'>-40%</span>
+            <span className='bg-[red] inline-block rounded-[4px] py-[4px] px-[12px] text-white_color font-normal font-poppins text-[12px]'>-{itemData ? itemData.discountPercentage : 0}%</span>
 
             <div className='flex flex-col gap-y-[8px]'>
                 <span className='w-[34px] h-[34px] bg-white_color text-[24px] text-text_000000 rounded-full flex justify-center hover:bg-button_DB4444 hover:text-white_color transition-all items-center cursor-pointer'>
@@ -27,7 +28,7 @@ const Productcard = () => {
         
         <div className='flex justify-center items-center'>
           <div className='w-[172px] h-[152px]'>
-            <img src={joystickimg} alt={joystickimg} className='w-full h-full object-contain'/>
+            <img src={itemData ? itemData.thumbnail :joystickimg} alt={itemData ? itemData.thumbnail :joystickimg} className='w-full h-full object-contain'/>
           </div>
         </div>
          
@@ -36,10 +37,10 @@ const Productcard = () => {
           </div>
       </div>
       <div className='mt-[8px] flex flex-col gap-2 cursor-pointer'>
-        <h2 className='text-[16px] font-poppins font-normal  leading-[24px]'>HAVIT HV-G92 Gamepad</h2>
+        <h2 className='text-[16px] font-poppins font-normal  leading-[24px]'>{itemData ? itemData.title : "HAVIT HV-G92 Gamepad"}</h2>
         <div className='flex items-center gap-[12px]'>
-            <span className='text-button_DB4444 font-poppins text-[16px] font-normal inline-block leading-[24px]'>$120</span>
-            <span className='line-through text-text_000000 opacity-50 font-poppins text-[16px] font-normal inline-block leading-[24px]'>$160</span>
+            <span className='text-button_DB4444 font-poppins text-[16px] font-normal inline-block leading-[24px]'>{itemData ? itemData.price :"$120"}</span>
+            <span className='line-through text-text_000000 opacity-50 font-poppins text-[16px] font-normal inline-block leading-[24px]'>{itemData ? itemData.price :"$120"}</span>
         </div>
         <div className='flex items-center gap-[4px]'>
           {[...new Array(5)].map((_ ,index)=>(

@@ -17,16 +17,23 @@ const Navbar = () => {
   
   // user button on/off section
 
-    useEffect(()=>{
-        window.addEventListener("click" ,  (event)=>{
-            if(useractionRef.current.contains(event.target)){
-            setUserlog(!userlog)
-            }else{
-            setUserlog(false)
-            }
-        })
-    }, [userlog])
+    // useEffect(()=>{
+    //     window.addEventListener("click" ,  (event)=>{
+    //         if(useractionRef.current.contains(event.target)){
+    //         setUserlog(!userlog)
+    //         }else{
+    //         setUserlog(false)
+    //         }
+    //     })
+    // }, [userlog])
     
+    const handleUser = () =>{
+      if(!userlog){
+        setUserlog(true)
+      }else{
+        setUserlog(false)
+      }
+    }
   
     const navItem = [
         {
@@ -89,7 +96,7 @@ const Navbar = () => {
                      <span className='text-[32px] text-text_000000 cursor-pointer cartno'>
                         <BsCart3 />
                      </span>
-                     <span className='text-[30px] text-white_color bg-button_DB4444 p-[6px] rounded-[50%] cursor-pointer' ref={useractionRef}>
+                     <span onClick={handleUser} className='text-[30px] text-white_color bg-button_DB4444 p-[6px] rounded-[50%] cursor-pointer' ref={useractionRef}>
                         <LuUser />
                      </span>
                   </div>
