@@ -4,11 +4,16 @@ import { TfiAngleRight } from 'react-icons/tfi'
 import "slick-carousel/slick/slick.css";
 import Slider from "react-slick";
 import banner from '../../../assets/banner.png'
+import { useGetAllCategoryQuery } from '../../../Features/Api/exclusiveApi';
+
+
 
 const Homepage = () => {
 
   const [aftervalue , setafterValue] = useState(0)
-
+  const { data, error, isLoading } = useGetAllCategoryQuery()
+  console.log(data?.data);
+  
     const settings = {
         dots: true,
         infinite: true,
@@ -69,19 +74,35 @@ const Homepage = () => {
       <div className='container'>
          <div className='flex items-center justify-between'>
             <div className='w-[23%] border-r-[2px] border-r-text_7D8184 '>
-               <ul className='pt-[40px]'>
-                  {category.map((item)=>(
+              {isLoading ?
+                (<ul>
+                 {/* Simulate 5 loading skeleton items */}
+                 {Array(7)
+                   .fill("")
+                   .map((_, index) => (
+                     <div
+                       key={index}
+                       className="flex items-center justify-between hover:bg-gray-200 transition-all"
+                     >
+                       <li className="flex animate-pulse bg-gray-300 rounded w-full py-4 my-3 mr-6"></li>
+                     </div>
+                   ))}
+               </ul>)
+              :
+                (<ul className='pt-[40px]'>
+                  {data?.data.map((item , index)=>(
                     <>
-                     <div className='flex items-center justify-between pr-[16px] hover:bg-gray-500 hover:text-white  cursor-pointer transition-all'>
-                        <li className='py-[10px] text-[16px] font-poppins font-normal transition-all hover:pl-[10px] leading-[24px] '>{item.category}</li>
-                        {item.subcategory &&
+                     <div key={index} className='flex items-center justify-between pr-[16px] hover:bg-gray-500 hover:text-white  cursor-pointer transition-all'>
+                        <li className='py-[10px] text-[16px] font-poppins font-normal transition-all hover:pl-[10px] leading-[24px] '>{item.title}</li>
+                        {item.subcategory.length > 0 &&
                            <span><TfiAngleRight /></span>
                         }
                      </div>
                     </>
                   ))
                   }
-               </ul>
+                </ul>)
+              }
             </div>
             <div className='w-[77%] h-[344px] pl-[45px] pt-[15px]'>
                 <Slider {...settings}>

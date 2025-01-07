@@ -4,6 +4,8 @@ import Navbar from '../../Component/Rootlayout/navbar/Navbar'
 import Homepage from './banner/Homepage'
 import Flashsale from './flashsale/Flashsale'
 import Category from './category/Category'
+import Bestseling from './bestselling/Bestseling'
+
 
 const Home = () => {
   return (
@@ -13,6 +15,7 @@ const Home = () => {
       <Homepage/>
       <Flashsale/>
       <Category/>
+      <Bestseling/>
     </>
   )
 }

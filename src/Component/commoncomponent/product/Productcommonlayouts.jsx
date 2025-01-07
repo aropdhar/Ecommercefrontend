@@ -1,5 +1,4 @@
 import React, { useRef } from 'react'
-import Productcard from './Productcard'
 import Heading from '../heading/Heading'
 import Timer from '../timer/Timer'
 import Slider from "react-slick";
@@ -16,7 +15,7 @@ const Productcommonlayouts = ({
   description = "flash sale",
   partialItem = 4,
   componentData = [],
-  isLoading,
+  isLoading = false,
   
 }) => {
   const sliderRef = useRef(null);
