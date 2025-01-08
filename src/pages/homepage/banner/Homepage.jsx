@@ -4,15 +4,21 @@ import { TfiAngleRight } from 'react-icons/tfi'
 import "slick-carousel/slick/slick.css";
 import Slider from "react-slick";
 import banner from '../../../assets/banner.png'
-import { useGetAllCategoryQuery } from '../../../Features/Api/exclusiveApi';
+import { useGetAllCategoryQuery ,useGetAllBannerQuery } from '../../../Features/Api/exclusiveApi';
 
 
 
 const Homepage = () => {
 
   const [aftervalue , setafterValue] = useState(0)
-  const { data, error, isLoading } = useGetAllCategoryQuery()
-  console.log(data?.data);
+  const { data, error, isLoading } = useGetAllCategoryQuery();
+  const bannerdata = useGetAllBannerQuery();
+
+  
+  
+
+
+  
   
     const settings = {
         dots: true,
@@ -104,12 +110,12 @@ const Homepage = () => {
                 </ul>)
               }
             </div>
-            <div className='w-[77%] h-[344px] pl-[45px] pt-[15px]'>
+            <div className='w-[77%] pl-[45px] pt-[15px]'>
                 <Slider {...settings}>
-                    {[...new Array(10)].map((item , index)=>(
-                       <div>
-                        <img src={banner} alt={banner} className='w-full h-full object-cover'/>
-                       </div>
+                    {bannerdata?.data?.data.map((item , index)=>(
+                      <div key={index} className='w-[892px] h-[344px] overflow-hidden'>
+                        <img src={item.image} alt={item.image} className='w-full h-full object-cover'/>
+                      </div>
                     ))} 
                 </Slider>
             </div>

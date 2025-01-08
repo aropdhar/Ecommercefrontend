@@ -9,9 +9,12 @@ export const exclusiveApi = createApi({
     GetAllCategory: builder.query({
       query: () => "/allcategory",
     }),
+    GetAllBanner: builder.query({
+      query: () => "/banner",
+    }),
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetAllCategoryQuery } = exclusiveApi
+export const { useGetAllCategoryQuery , useGetAllBannerQuery } = exclusiveApi
