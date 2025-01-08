@@ -15,11 +15,6 @@ const Homepage = () => {
   const bannerdata = useGetAllBannerQuery();
 
   
-  
-
-
-  
-  
     const settings = {
         dots: true,
         infinite: true,
@@ -27,6 +22,7 @@ const Homepage = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: false,
+        autoplay: true,
         afterChange: function(currentSlide) {
           setafterValue(currentSlide);
         },
