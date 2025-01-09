@@ -1,13 +1,15 @@
 import React from 'react'
 import Productcard from '../../../Component/commoncomponent/product/Productcard'
 import Productcommonlayouts from '../../../Component/commoncomponent/product/Productcommonlayouts';
+import { useGetAllFlashSaleQuery } from '../../../Features/Api/exclusiveApi';
 import { useGetAllProductQuery } from '../../../Features/Api/productApi';
 
 const Flashsale = () => { 
-
-  const { data, error, isLoading } = useGetAllProductQuery();
   
+   const { data, error, isLoading } = useGetAllProductQuery();
+  // const { data, error, isLoading } = useGetAllFlashSaleQuery();
 
+  
   return (
     <>
       
