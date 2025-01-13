@@ -5,6 +5,7 @@ import Homepage from './banner/Homepage'
 import Flashsale from './flashsale/Flashsale'
 import Category from './category/Category'
 import Bestseling from './bestselling/Bestseling'
+import Experience from './experience/Experience'
 
 
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
       <Flashsale/>
       <Category/>
       <Bestseling/>
+      <Experience/>
     </>
   )
 }

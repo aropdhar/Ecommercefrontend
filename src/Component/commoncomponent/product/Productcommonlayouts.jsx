@@ -13,6 +13,7 @@ const Productcommonlayouts = ({
   isArrowsTrue = false,
   heading = "today's",
   description = "flash sale",
+  isButton = false,
   partialItem = 4,
   componentData = [],
   isLoading = false,
@@ -70,9 +71,12 @@ const Productcommonlayouts = ({
                   </h1>
                 </div>
               )}
-              {/* <div className="bg-button_DB4444  text-md font-popins font-medium text-white_color px-[48px] py-4 rounded cursor-pointer hover:opacity-75">
-                 View All
-              </div> */}
+              {isButton &&
+                <div className="bg-button_DB4444  text-md font-popins font-medium text-white_color px-[48px] py-4 rounded cursor-pointer hover:opacity-75 transition-all">
+                View All
+                </div>
+              }
+              
             </div>
 
           {/* product section */}
