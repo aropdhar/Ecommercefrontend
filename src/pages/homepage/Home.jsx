@@ -6,6 +6,8 @@ import Flashsale from './flashsale/Flashsale'
 import Category from './category/Category'
 import Bestseling from './bestselling/Bestseling'
 import Experience from './experience/Experience'
+import Exploreproduct from './exploreproduct/Exploreproduct'
+import Newarrival from './newarrival/Newarrival'
 
 
 const Home = () => {
@@ -17,7 +19,9 @@ const Home = () => {
       <Flashsale/>
       <Category/>
       <Bestseling/>
-      <Experience/>
+      <Experience timeoffer = {5}/>
+      <Exploreproduct/>
+      <Newarrival/>
     </>
   )
 }

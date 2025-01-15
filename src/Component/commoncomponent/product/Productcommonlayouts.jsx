@@ -17,6 +17,7 @@ const Productcommonlayouts = ({
   partialItem = 4,
   componentData = [],
   isLoading = false,
+  rows = 1
   
 }) => {
   const sliderRef = useRef(null);
@@ -28,6 +29,7 @@ const Productcommonlayouts = ({
     slidesToShow: partialItem,
     slidesToScroll: partialItem -1,
     autoplay: true,
+    rows: rows
 
   };
 
