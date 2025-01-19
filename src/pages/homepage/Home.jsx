@@ -8,13 +8,13 @@ import Bestseling from './bestselling/Bestseling'
 import Experience from './experience/Experience'
 import Exploreproduct from './exploreproduct/Exploreproduct'
 import Newarrival from './newarrival/Newarrival'
+import CustomerService from './customer/CustomerService'
+import Footer from '../../Component/Rootlayout/footer/Footer'
 
 
 const Home = () => {
   return (
     <>
-      <Header/>
-      <Navbar/>
       <Homepage/>
       <Flashsale/>
       <Category/>
@@ -22,6 +22,7 @@ const Home = () => {
       <Experience timeoffer = {5}/>
       <Exploreproduct/>
       <Newarrival/>
+      <CustomerService/>
     </>
   )
 }

@@ -12,8 +12,8 @@ const Newarrival = () => {
           <Heading title={"Featured"} description={"New Arrival"}/>
           <div className='flex items-center my-[60px] gap-x-[30px]'>
             <div className='w-[575px] h-[600px] bg-text_000000 px-[30px] pt-[86px]'>
-             <div className='w-[511px] h-[511px]'>
-                <img className='w-full h-full object-cover' src={arrivalbanner1} alt={arrivalbanner1} />
+             <div className='w-[611px] h-[511px]'>
+                <img className='w-full h-full object-contain' src={arrivalbanner1} alt={arrivalbanner1} />
              </div>
             </div>
              <div className='w-[50%] flex flex-col gap-y-[32px]'>
