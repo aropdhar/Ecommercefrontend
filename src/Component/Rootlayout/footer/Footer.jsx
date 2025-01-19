@@ -67,7 +67,7 @@ const Footer = () => {
                           <img src={appstore} alt={appstore} />
                         </div>
                     </div>
-                    <div className='flex items-center text-white_color mt-[12px] gap-x-[10px] text-[24px]'>
+                    <div className='flex items-center text-white_color mt-[12px] gap-x-[10px] text-[24px] cursor-pointer'>
                       <FaFacebookF />
                       <CiTwitter />
                       <FaInstagram />
