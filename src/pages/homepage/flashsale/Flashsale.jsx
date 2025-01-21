@@ -6,9 +6,17 @@ import { useGetAllProductQuery } from '../../../Features/Api/productApi';
 
 const Flashsale = () => { 
   
-   const { data, error, isLoading } = useGetAllProductQuery();
+   const { data, error, isLoading } = useGetAllProductQuery(); 
   // const { data, error, isLoading } = useGetAllFlashSaleQuery();
+  // const timedate = parseInt(data?.data[0]?.offerDate?.offerDate);
+  
+  // // const flashSaleProducts = data?.data.map((item)=>{
+  // //   return item.productId
+  // // });
 
+  // // console.log(flashSaleProducts[0].name);
+  
+  const timeDate = 3;
   
   return (
     <>
@@ -18,7 +26,7 @@ const Flashsale = () => {
           <Productcommonlayouts
             Productcard={Productcard}
             timeStamp={true}
-            timeofOffer={1}
+            timeofOffer={timeDate || 1}
             isArrowsTrue={true}
             heading="Today's"
             description="Flash Sales"

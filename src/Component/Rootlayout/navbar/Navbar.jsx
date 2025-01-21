@@ -39,6 +39,7 @@ const Navbar = () => {
         {
             id: 1,
             item: "Home",
+            
         },
         {
             id: 2,
@@ -47,6 +48,7 @@ const Navbar = () => {
         {
             id: 3,
             item: "About",
+            
         },
         {
             id: 4,

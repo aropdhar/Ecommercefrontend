@@ -50,7 +50,11 @@ const Productcommonlayouts = ({
             <div className='flex items-end justify-between'>
               <div className='flex items-end gap-x-[87px]'>
                 <Heading title={heading} description={description}/>
-                {timeStamp && <Timer timeofOffer={timeofOffer}/>}
+                {isLoading ?
+                  "Data Nai"
+                :
+                 timeStamp && <Timer timeofOffer={timeofOffer}/>
+                }
                 
               </div>
               {isArrowsTrue && (

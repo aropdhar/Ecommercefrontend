@@ -12,10 +12,13 @@ export const ProductApi = createApi({
     GetBestSellingProducts: builder.query({
       query: ()=> "/products/category/smartphones"
     }),
+    GetAllProductCategoryList: builder.query({
+      query: ()=> "/products/category-list"
+    }),
   }),
 })
 
 
-export const { useGetAllProductQuery , useGetBestSellingProductsQuery} = ProductApi
+export const { useGetAllProductQuery , useGetBestSellingProductsQuery , useGetAllProductCategoryListQuery} = ProductApi
 
 
