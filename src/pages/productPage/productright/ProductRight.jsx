@@ -11,7 +11,9 @@ const ProductRight = () => {
   let productlength = data?.products?.length / 9;
 
   const handleItem = (index) =>{
-     setPage(index)
+    if(index > 0 && index <= Math.ceil(productlength)){
+      setPage(index)
+    }
   }
 
   return (
@@ -39,7 +41,7 @@ const ProductRight = () => {
        <nav aria-label="Page navigation example" className='flex items-center justify-center mt-20'>
           <ul class="inline-flex -space-x-px text-base h-10">
             <li>
-              <span href="#" class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-white dark:border-gray-700 dark:text-black dark:hover:bg-gray-700 dark:hover:text-white cursor-pointer">Previous</span>
+              <span href="#" class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-white dark:border-gray-700 dark:text-black dark:hover:bg-gray-700 dark:hover:text-white cursor-pointer" onClick={()=>handleItem(page - 1)}>Previous</span>
             </li>
             {[...new Array(Math.ceil(productlength) || 8)].map((_ , index)=>(
               <li>
@@ -52,9 +54,9 @@ const ProductRight = () => {
             ))
 
             }
-           
+            
             <li>
-              <span href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-white dark:border-gray-700 dark:text-black dark:hover:bg-gray-700 dark:hover:text-white cursor-pointer">Next</span>
+              <span href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-white dark:border-gray-700 dark:text-black dark:hover:bg-gray-700 dark:hover:text-white cursor-pointer" onClick={()=>handleItem(page + 1)}>Next</span>
             </li>
           </ul>
         </nav>

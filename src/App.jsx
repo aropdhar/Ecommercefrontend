@@ -8,6 +8,7 @@ import {
 import Home from './pages/homepage/Home';
 import Rootlayouts from './Component/Rootlayout/Rootlayouts';
 import Productpage from './pages/productPage/productpage';
+import ProductDetails from './pages/productsdetails/ProductDetails';
 
 
 const router = createBrowserRouter(
@@ -15,6 +16,8 @@ const router = createBrowserRouter(
      <Route element={<Rootlayouts/>}>
        <Route path='/' element={<Home/>}/>
        <Route path='/About' element={<Productpage/>} />
+       <Route path='/productdetails/:id' element={<ProductDetails/>} />
+       <Route path='/productdetails' element={<Productpage/>} />
      </Route>
   )
 );
