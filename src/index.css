@@ -107,6 +107,20 @@
     box-shadow: 0px 0px 100px 200px rgba(217,217,217,0.245);
 
   }
+
+  .instockunderline{
+    position: relative;
+  }
+
+  .instockunderline::before{
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 16px;
+    background: var(--black_363738);
+    top: 4px;
+    left: 0;
+  }
 }
 
 

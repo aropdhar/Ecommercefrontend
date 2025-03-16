@@ -5,9 +5,10 @@ import ProductContent from './productcontent/ProductContent'
 import { useGetSingleProductQuery } from '../../Features/Api/productApi'
 
 const ProductDetails = () => {
-     const { data, error, isLoading } = useGetSingleProductQuery();
+     const { data, error, isLoading } = useGetSingleProductQuery(); 
      
      
+   
   return (
     <div>
         <div className="container">
@@ -16,7 +17,7 @@ const ProductDetails = () => {
                 <div className='w-[55%]'>
                     <ImageGallery image={data?.images}/>
                 </div>
-                <div className='w-[40%] py-5 bg-red'>
+                <div className='w-[40%] py-5'>
                     <ProductContent/>
                 </div>
             </div>

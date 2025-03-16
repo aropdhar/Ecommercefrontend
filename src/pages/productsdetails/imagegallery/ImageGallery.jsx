@@ -1,21 +1,13 @@
 import React, { useState } from 'react'
 import image5 from '../../../assets/image 63.png'
-
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css'
+import InnerImageZoom from 'react-inner-image-zoom'
+import banner from '../../../assets/banner.png'
 
 const ImageGallery = ({image}) => {
-  const[initialimage , setinitialimage] = useState(image[0]);
-  const [isEnter , setisEnter] = useState({
-    clientX: 0,
-    clientY: 0
-  });
-
-  const onmouseentre = (img ,event) =>{
-    setisEnter({
-      ...isEnter,
-      clientX: event.clientX,
-      clientY: event.clientY
-    })  
-  }
+  const[initialimage , setinitialimage] = useState(image[0] || 'https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png');
+  
+  
 
   return (
     <div className='flex items-center gap-x-[30px]'>
@@ -27,12 +19,12 @@ const ImageGallery = ({image}) => {
           ))
           }
           <div className='bg-white_F5F5F5 rounded-[5px] cursor-pointer py-[12px] w-[170px] h-[138px] px-[25px]' >
-              <img className='w-full h-full object-contain' src={image5} alt={image5} onClick={()=>setinitialimage(image5)}/>
+              <img className='w-full h-full object-contain' src={banner} alt={banner} onClick={()=>setinitialimage(banner)}/>
           </div>
       </div>
       <div className='bg-white_F5F5F5 flex items-center justify-center px-[27px] rounded-[5px] pt-[154px] pb-[131px]'>
         <div className='w-[446px] h-[315px]'>
-          <img className={`w-full h-full object-contain hover:scale-100`} src={initialimage} alt={initialimage} onMouseMove={(event)=>onmouseentre(initialimage , event)}/>
+          <InnerImageZoom  src={initialimage} />
         </div>
       </div>
     </div>
