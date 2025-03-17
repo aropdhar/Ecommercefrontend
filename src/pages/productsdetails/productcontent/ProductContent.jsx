@@ -1,9 +1,15 @@
 import React from 'react'
 import Star from '../../../Component/commoncomponent/star/Star'
 import { CiHeart } from 'react-icons/ci'
+import { TbTruckDelivery } from 'react-icons/tb'
+import { NavLink } from 'react-router-dom'
+import Returnicons from '../../../assets/return.png'
+import UsediscountPrice from '../../../hooks/UsediscountPrice'
 
-const ProductContent = () => {
+const ProductContent = ({ProductDetailsdata}) => {
 
+  const {title , description , discountPercentage , price , rating , returnPolicy ,reviews , stock , warrantyInformation} = ProductDetailsdata;
+  
   const size = [
     {id: 1 , size: 'XS'},
     {id: 2 , size: 'S'},
@@ -15,14 +21,14 @@ const ProductContent = () => {
   return (
     <>
       <div className='flex flex-col gap-y-[16px]'>
-        <h1 className='text-text_000000 font-Inter font-bold text-[24px] leading-[24px] '>Havic HV G-92 Gamepad</h1>
+        <h1 className='text-text_000000 font-Inter font-bold text-[24px] leading-[24px] '>{title}</h1>
           <div className='flex items-center gap-x-[10px]'>
-            <Star />
-            <span className='inline-block text-text_000000 opacity-[0.5]'>{`(${150} Reviews)`}</span>
-            <span className='instockunderline pl-[10px] text-button_DB4444'>In Stock</span>
+            <Star rating={rating}/>
+            <span className='inline-block text-text_000000 opacity-[0.5]'>{`(${reviews.length} Reviews)`}</span>
+            <span className='instockunderline pl-[10px] text-button_DB4444'>{stock} Stock</span>
           </div>
-        <span className='text-text_000000 font-Inter font-normal text-[24px] leading-[24px] text-justify'>{`${'$120'}`}</span>
-        <p className='text-text_000000 font-poppins font-normal text-[16px] mt-[8px] leading-[24px] w-[373px] text-justify border-b-[2px] border-b-gray-300 pb-[24px]'>PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive.</p>
+        <span className='text-text_000000 font-Inter font-normal text-[24px] leading-[24px] text-justify'>$ {Math.round(UsediscountPrice(price , discountPercentage))}</span>
+        <p className='text-text_000000 font-poppins font-normal text-[16px] mt-[8px] leading-[24px] w-[373px] text-justify border-b-[2px] border-b-gray-300 pb-[24px]'>{description}</p>
       </div>
       {/* color and size  */}
       <div className='mt-[24px]'>
@@ -60,6 +66,26 @@ const ProductContent = () => {
          </div>
          <div className='border-2 w-[40px] flex items-center justify-center hover:bg-button_DB4444 hover:text-white text-[32px] rounded h-[40px] cursor-pointer border-black border-opacity-[0.5]'>
            <span><CiHeart /></span>
+         </div>
+      </div>
+
+      {/* footer section */}
+      <div className='mt-[10px] flex flex-col items-start '>
+         <div className='flex w-[399px] items-center gap-x-[16px] border-2 border-black rounded pt-[29px] pr-[51px] pb-[16px] pl-[16px]'>
+           <span className='inline-block text-[40px]'><TbTruckDelivery /></span>
+           <div className='flex flex-col gap-x-[8px] '>
+              <h1 className='text-[16px] font-poppins font-medium leading-[24px]'>Free Delivery</h1>
+              <NavLink className='text-[12px] font-poppins font-medium leading-[18px] underline'>{warrantyInformation}</NavLink>
+           </div>
+         </div>
+         <div className='flex items-center w-[399px] gap-x-[16px] border-2 border-black rounded pt-[29px] pr-[51px] pb-[16px] pl-[16px]'>
+            <div>
+               <img src={Returnicons} alt={Returnicons} />
+            </div>
+            <div className='flex flex-col gap-x-[8px] '>
+              <h1 className='text-[16px] font-poppins font-medium leading-[24px]'>Return Delivery</h1>
+              <p>{returnPolicy}.<NavLink className=" underline ">Details</NavLink></p>
+            </div>
          </div>
       </div>
     </>

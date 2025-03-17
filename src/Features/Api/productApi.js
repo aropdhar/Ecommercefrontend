@@ -16,13 +16,16 @@ export const ProductApi = createApi({
       query: ()=> "/products/category-list"
     }),
     GetSingleProduct: builder.query({
-      query: ()=> "/products/1"
+      query: (id)=> `/products/${id}`
+    }),
+    GetProductCategory: builder.query({
+      query: (categoryName)=> `products/category/${categoryName}`
     }),
   }),
 })
 
 
 export const { useGetAllProductQuery , useGetBestSellingProductsQuery , useGetAllProductCategoryListQuery,
-useGetSingleProductQuery
+useGetSingleProductQuery , useGetProductCategoryQuery
 } = ProductApi
 
