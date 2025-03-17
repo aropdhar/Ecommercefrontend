@@ -8,6 +8,8 @@ const ProductDetails = () => {
      const { data, error, isLoading } = useGetSingleProductQuery(); 
      
      
+     
+     
    
   return (
     <div>
