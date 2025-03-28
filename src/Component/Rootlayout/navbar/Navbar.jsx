@@ -39,20 +39,23 @@ const Navbar = () => {
         {
             id: 1,
             item: "Home",
-            
+            pathRoute: ''
         },
         {
             id: 2,
             item: "Contact",
+            pathRoute: "contact"
         },
         {
             id: 3,
             item: "About",
+            pathRoute: "about"
             
         },
         {
             id: 4,
             item: "SignUp",
+            pathRoute: "signup"
         }
     
     ];
@@ -70,7 +73,7 @@ const Navbar = () => {
                     {navItem?.map((nav)=>(
                       <li key={nav.id} className='menuUnderLine'>
                        <NavLink
-                          to={`/${nav.item}`}
+                          to={`/${nav.pathRoute}`}
                           className={({ isPending , isActive }) =>
                             isPending ? "text-black text-[17px] font-Inter font-normal" 
                           : isActive ? "text-red text-[17px] font-Inter font-normal" : "text-text_000000 text-[17px] font-Inter font-normal"
