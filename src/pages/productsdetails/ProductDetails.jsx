@@ -13,10 +13,9 @@ import { useGetProductCategoryQuery} from "../../Features/Api/productApi";
 const ProductDetails = () => {
     const params = useParams();
     const { data, error, isLoading } = useGetSingleProductQuery(parseInt(params?.id)); 
-    const  categorydata  = useGetProductCategoryQuery("beauty");
-    
-    
-    
+    const  categorydata  = useGetProductCategoryQuery(data?.category);
+
+        
     let settings = {
         dots: false,
         infinite: true,

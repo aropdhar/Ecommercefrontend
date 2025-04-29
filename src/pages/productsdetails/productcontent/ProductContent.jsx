@@ -7,6 +7,7 @@ import Returnicons from '../../../assets/return.png'
 import UsediscountPrice from '../../../hooks/UsediscountPrice'
 
 const ProductContent = ({ProductDetailsdata}) => {
+  
 
   const {title , description , discountPercentage , price , rating , returnPolicy ,reviews , stock , warrantyInformation} = ProductDetailsdata;
   

@@ -18,7 +18,7 @@ const ImageGallery = ({image}) => {
           ))
           }
           <div className='bg-white_F5F5F5 rounded-[5px] cursor-pointer py-[12px] w-[170px] h-[138px] px-[25px]' >
-              <img className='w-full h-full object-contain' src={banner} alt={banner} onClick={()=>setinitialimage(banner)}/>
+              <img className='w-full h-full object-cover' src={banner} alt={banner} onClick={()=>setinitialimage(banner)}/>
           </div>
       </div>
       <div className='bg-white_F5F5F5 flex items-center justify-center px-[27px] rounded-[5px] pt-[154px] pb-[131px]'>
