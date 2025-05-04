@@ -54,7 +54,6 @@ const Productcard = ({itemData}) => {
         </div>
         </div>
       </Link>
-      
     </div>
   )
 }
