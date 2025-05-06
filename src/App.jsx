@@ -13,6 +13,7 @@ import Error from './pages/error/Error';
 import Login from './pages/auth/login/Login';
 import Wishlist from './pages/wishlist/Wishlist';
 import Addtocart from './pages/addtocart/Addtocart';
+import About from './pages/about/About';
 
 
 const router = createBrowserRouter(
@@ -20,12 +21,13 @@ const router = createBrowserRouter(
     <Route>
        <Route element={<Rootlayouts/>}>
         <Route path='/' element={<Home/>}/>
-        <Route path='/about' element={<Productpage/>} />
+        <Route path='/product' element={<Productpage/>} />
         <Route path='/productdetails/:id' element={<ProductDetails/>} />
         <Route path='/productdetails' element={<Productpage/>} />
         <Route path='/wishlist' element={<Wishlist/>} />
         <Route path='/login' element={<Login/>}/>
         <Route path='/addtocart' element={<Addtocart/>} />
+        <Route path='/about' element={<About/>} />
         <Route path='*' element={<Error/>}/>
       </Route>
     </Route>

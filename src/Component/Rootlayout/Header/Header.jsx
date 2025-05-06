@@ -15,8 +15,8 @@ const Header = () => {
                 <div>
                   <select name="" id="" className='text-white_FAFAFA font-normal font-poppins text-[15px] cursor-pointer leading-[21px] bg-transparent'>
                       <option className='text-text_000000' value="">English</option>
-                      <option className='text-text_000000 ' value="">Bangla</option>
-                      <option className='text-text_000000 ' value="">French</option>
+                      <option className='text-text_000000' value="">Bangla</option>
+                      <option className='text-text_000000' value="">French</option>
                   </select>
                 </div>
             </div>
