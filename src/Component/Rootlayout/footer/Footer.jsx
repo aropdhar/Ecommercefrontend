@@ -19,7 +19,7 @@ const Footer = () => {
                     <h3 className='text-[16px] text-white_color leading-[28px] font-poppins font-medium'>Subscribe</h3>
                     <p className='text-[16px] text-white_color leading-[28px] font-poppins font-normal'>Get 10% off your first order</p>
                     <div className='relative flex items-center'>
-                        <input className='w-[217px] bg-transparent border-2 border-white_color p-[10px] rounded-[4px] relative' type="text" placeholder='Enter Your Email'/>
+                        <input className='w-[217px] text-white bg-transparent border-2 border-white_color p-[10px] rounded-[4px] relative' type="text" placeholder='Enter Your Email'/>
                         <span className='inline-block text-white_color text-[24px] absolute left-[84%] top-[13px] cursor-pointer'><AiOutlineSend /></span>
                     </div>
                 </div>

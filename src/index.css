@@ -121,6 +121,17 @@
     top: 4px;
     left: 0;
   }
+
+  .accountstyle{
+    font-family: var(--Poppins);
+    font-size: 14px;
+    color: var(--text_000000);
+    opacity: 0.5;
+    cursor: pointer;
+  }
+  .shadow{
+    box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.08);
+  }
 }
 
 
