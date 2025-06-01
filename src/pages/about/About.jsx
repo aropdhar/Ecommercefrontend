@@ -54,7 +54,7 @@ const About = () => {
              width: "20px",
              height: "20px",
              borderRadius: "50%",
-             backgroundColor: "#ffff",
+             backgroundColor: "gray",
              marginRight: "10px",
              opacity: "0.5",
              cursor: "pointer",
@@ -148,7 +148,7 @@ const About = () => {
 
          <div className="slider-container">
             <Slider {...settings}>    
-               {[...Array(3)].map((item)=>(
+               {[...Array(10)].map((item)=>(
                   <Review/>
                ))
 
@@ -171,7 +171,7 @@ const About = () => {
 
                     }
                 </div>
-          </div>
+         </div>
       </div>
     </div>
   )

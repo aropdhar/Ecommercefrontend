@@ -1,8 +1,10 @@
 import React from 'react'
 import Breadcrum from '../../Component/commoncomponent/breadcrum/Breadcrum'
+import Input from '../../Component/commoncomponent/input/Input'
 
 const Myaccount = () => {
   return (
+    <>
     <div className='mb-[140px]'>
       <div className='container'>
          <div className='flex items-center justify-between'>
@@ -75,6 +77,8 @@ const Myaccount = () => {
 
       </div>
     </div>
+    
+    </>
   )
 }
  

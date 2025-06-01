@@ -40,6 +40,9 @@
     border-radius: 50%;
     color: var(--white_color)
   }
+  span{
+    display: inline-block
+  }
 }
 
 @layer utilities{

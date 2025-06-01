@@ -70,7 +70,7 @@ const Login = () => {
 
                         <div className='flex items-center gap-x-[87px]'>
                             <button type="submit" className='bg-button_DB4444 py-[16px] px-[48px] rounded text-white font-poppins text-[16px] font-medium leading-[24px]'>Login</button>
-                            <NavLink className='font-poppins text-[16px] font-normal leading-[24px]'>Forget Password</NavLink>
+                            <NavLink to={'/forgetpassword'} className='font-poppins text-[16px] font-normal leading-[24px]'>Forget Password</NavLink>
                         </div>
                     </div> 
                 </form>
