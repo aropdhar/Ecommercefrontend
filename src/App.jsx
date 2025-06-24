@@ -18,6 +18,7 @@ import Myaccount from './pages/accout/Myaccount';
 import Signup from './pages/auth/signup/Signup';
 import Contact from './pages/contact/Contact';
 import Forgetpassword from './pages/auth/forgatpassword/Forgetpassword';
+import Checkout from './pages/checkout/Checkout';
 
 
 const router = createBrowserRouter(
@@ -36,6 +37,7 @@ const router = createBrowserRouter(
         <Route path='/myaccount' element={<Myaccount/>}/>
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/forgetpassword' element={<Forgetpassword/>}/>
+        <Route path='/checkout' element={<Checkout/>}/>
         <Route path='*' element={<Error/>}/>
       </Route>
     </Route>
