@@ -10,7 +10,7 @@ import Heading from '../../Component/commoncomponent/heading/Heading'
 import Productcard from '../../Component/commoncomponent/product/Productcard'
 import { useGetProductCategoryQuery} from "../../Features/Api/productApi";
 
-const ProductDetails = () => {
+const  ProductDetails = () => {
     const params = useParams();
     const { data, error, isLoading } = useGetSingleProductQuery(parseInt(params?.id)); 
     const  categorydata  = useGetProductCategoryQuery(data?.category);

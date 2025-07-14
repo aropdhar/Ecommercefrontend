@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 
 
 const Productcard = ({itemData}) => {
-  
+   
   return (
     <div className='mt-[34px]'>
       <Link className='inline-block' to={`/productdetails/${itemData.id}`}>  
@@ -17,8 +17,8 @@ const Productcard = ({itemData}) => {
           <div className='bg-white_F5F5F5 relative px-[12px] pt-[12px] pb-[49px] cursor-pointer group'>
 
           <div className='flex items-start justify-between '>
-              {itemData.discountPercentage && (
-                <span className='bg-[red] inline-block rounded-[4px] py-[4px] px-[12px] text-white_color font-normal font-poppins text-[12px]'>-{itemData ? itemData.discountPercentage : 0}%</span>
+              {itemData.discountPrice && (
+                <span className='bg-[red] inline-block rounded-[4px] py-[4px] px-[12px] text-white_color font-normal font-poppins text-[12px]'>-{itemData ? itemData.discountPrice : 0}%</span>
               )}
 
               <div className='flex flex-col gap-y-[8px]'>
@@ -33,7 +33,7 @@ const Productcard = ({itemData}) => {
           
           <div className='flex justify-center items-center'>
             <div className='w-[172px] h-[152px]'>
-              <img src={itemData ? itemData.thumbnail :joystickimg} alt={itemData ? itemData.thumbnail :joystickimg} className='w-full h-full object-contain'/>
+              <img src={itemData ? itemData.image : joystickimg} alt={joystickimg} className='w-full h-full object-contain'/>
             </div>
           </div>
           
@@ -42,14 +42,20 @@ const Productcard = ({itemData}) => {
             </div>
         </div>
         <div className='mt-[8px] flex flex-col gap-2 cursor-pointer'>
-          <h2 className='text-[16px] font-poppins font-normal  leading-[24px] truncate w-full'>{itemData ? itemData.title : "HAVIT HV-G92 Gamepad"}</h2>
+          <h2 className='text-[16px] font-poppins font-normal  leading-[24px] truncate w-full'>{itemData ? itemData.name : "HAVIT HV-G92 Gamepad"}</h2>
           <div className='flex items-center gap-[12px]'>
-              <span className='text-button_DB4444 font-poppins text-[16px] font-normal inline-block leading-[24px]'>{itemData ? itemData.price.toFixed(2) :"$120"}</span>
-              <span className='line-through text-text_000000 opacity-50 font-poppins text-[16px] font-normal inline-block leading-[24px]'>{UsediscountPrice(itemData.price , itemData?.discountPercentage).toFixed(2)}</span>
+              <span className='text-button_DB4444 font-poppins text-[16px] font-normal inline-block leading-[24px]'>{itemData ? itemData.price : "$120" }</span>
+              <span className='line-through text-text_000000 opacity-50 font-poppins text-[16px] font-normal inline-block leading-[24px]'>
+                
+                {UsediscountPrice(itemData.price , itemData?.discountPrice).toFixed(2)}
+
+                     {/* {parseFloat(itemData.price.replace(/,/g, "")) -
+                    parseFloat(itemData.discountPrice.replace(/,/g, ""))} */}
+              </span>
           </div>
           <div className='flex items-center gap-[4px]'>
             <Star rating={itemData && itemData?.rating}/>
-            <h3 className='text-button_DB4444 font-poppins text-[16px] font-normal inline-block leading-[24px]'>{`(${itemData?.reviews?.length})`}</h3>
+            <h3 className='text-button_DB4444 font-poppins text-[16px] font-normal inline-block leading-[24px]'>{`(${itemData?.rating})`}</h3>
           </div>
         </div>
         </div>

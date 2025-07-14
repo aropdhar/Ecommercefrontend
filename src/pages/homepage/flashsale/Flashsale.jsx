@@ -6,15 +6,19 @@ import { useGetAllProductQuery } from '../../../Features/Api/productApi';
 
 const Flashsale = () => { 
   
-   const { data, error, isLoading } = useGetAllProductQuery(); 
-  // const { data, error, isLoading } = useGetAllFlashSaleQuery();
+  //  const { data, error, isLoading } = useGetAllProductQuery(); 
+  const { data, error, isLoading } = useGetAllFlashSaleQuery();
   // const timedate = parseInt(data?.data[0]?.offerDate?.offerDate);
   
-  // // const flashSaleProducts = data?.data.map((item)=>{
-  // //   return item.productId
-  // // });
+ 
+  console.log(data?.data[0].productId.image[0]);
+  
 
-  // // console.log(flashSaleProducts[0].name);
+  const flashSaleProducts = data?.data.map((item)=>{
+    return item.productId    
+  });
+
+  
   
   const timeDate = 3;
   
@@ -30,7 +34,7 @@ const Flashsale = () => {
             isArrowsTrue={true}
             heading="Today's"
             description="Flash Sales"
-            componentData ={data?.products}
+            componentData ={flashSaleProducts}
             isLoading = {isLoading}
           />
           <div className="pb-20 mt-[80px]">
