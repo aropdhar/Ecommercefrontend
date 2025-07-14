@@ -2,24 +2,18 @@ import React, { useState } from 'react'
 import Productcommonlayouts from '../../../Component/commoncomponent/product/Productcommonlayouts'
 import Productcard from '../../../Component/commoncomponent/product/Productcard'
 import { useGetAllBestSellingQuery } from '../../../Features/Api/exclusiveApi'
-import { useGetBestSellingProductsQuery } from '../../../Features/Api/productApi';
+// import { useGetBestSellingProductsQuery } from '../../../Features/Api/productApi';
 
 const Bestseling = () => {
 
-  const { data, error, isLoading } = useGetBestSellingProductsQuery();
+  // const { data, error, isLoading } = useGetBestSellingProductsQuery();
  
-  // const { data, error, isLoading } = useGetAllBestSellingQuery();
+  const { data, error, isLoading } = useGetAllBestSellingQuery();
  
 
-  // const bestsellingproduct = data?.data?.map((item)=>{
-  //   return item.products
-  // })
-
-  // console.log(bestsellingproduct);
-  
-  
-  
-  
+  const bestsellingproduct = data?.data?.map((item)=>{
+    return item.product
+  })
 
   return (
     <>
@@ -29,7 +23,7 @@ const Bestseling = () => {
               isArrowsTrue={false}
               heading="This Month"
               description="Best Selling Products"
-              componentData={data?.products}
+              componentData={bestsellingproduct}
               isButton={true}
         />
       </div>

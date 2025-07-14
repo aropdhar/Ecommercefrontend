@@ -1,10 +1,15 @@
 import React from 'react'
 import Productcommonlayouts from '../../../Component/commoncomponent/product/Productcommonlayouts'
 import Productcard from '../../../Component/commoncomponent/product/Productcard'
-import { useGetAllProductQuery } from '../../../Features/Api/productApi';
+// import { useGetAllProductQuery } from '../../../Features/Api/productApi';
+import { useGetAllProductQuery } from '../../../Features/Api/exclusiveApi';
 
 const Exploreproduct = () => {
-   const { data, error, isLoading } = useGetAllProductQuery();
+
+//    const { data, error, isLoading } = useGetAllProductQuery();
+      const { data, error, isLoading } = useGetAllProductQuery();
+
+      
   return (
     <div className='container'>
         <div className='flex flex-col items-center border-b-[1px] border-b-black_363738 mb-10'>
@@ -14,7 +19,7 @@ const Exploreproduct = () => {
             description={"Explore Our Products"}
             partialItem = {4}
             Productcard={Productcard}
-            componentData = {data?.products}
+            componentData = {data?.data}
             rows = {2}
         />
             <div className="pb-20 mt-[80px]">

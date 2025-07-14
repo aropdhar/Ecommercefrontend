@@ -82,7 +82,6 @@ const Productcommonlayouts = ({
                 View All
                 </div>
               }
-              
             </div>
 
           {/* product section */}
