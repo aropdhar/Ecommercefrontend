@@ -3,18 +3,22 @@ import Slider from "react-slick";
 import Breadcrum from '../../Component/commoncomponent/breadcrum/Breadcrum'
 import ImageGallery from './imagegallery/ImageGallery'
 import ProductContent from './productcontent/ProductContent'
-import { useGetSingleProductQuery } from '../../Features/Api/productApi'
 import { useParams } from 'react-router-dom'
 import Skeleton from '../../skeleton/Skeleton'
 import Heading from '../../Component/commoncomponent/heading/Heading'
 import Productcard from '../../Component/commoncomponent/product/Productcard'
-import { useGetProductCategoryQuery} from "../../Features/Api/productApi";
+import { useGetAllSingleProductQuery } from "../../Features/Api/exclusiveApi";
 
 const  ProductDetails = () => {
     const params = useParams();
-    const { data, error, isLoading } = useGetSingleProductQuery(parseInt(params?.id)); 
-    const  categorydata  = useGetProductCategoryQuery(data?.category);
+    
+    const { data, error, isLoading } = useGetAllSingleProductQuery(params?.id);
+    
+    console.log(data);
+    
 
+    // const  categorydata  = useGetProductCategoryQuery(data?.category);
+    
         
     let settings = {
         dots: false,
@@ -37,16 +41,16 @@ const  ProductDetails = () => {
             :
             <div className='flex gap-x-[71px] my-5'>
                 <div className='w-[55%]'>
-                    <ImageGallery image={data?.images}/>
+                    <ImageGallery image={data?.data?.image}/>
                 </div>
                 <div className='w-[40%] py-5'>
-                    <ProductContent ProductDetailsdata={data} />
+                    <ProductContent ProductDetailsdata={data?.data} />
                 </div>
             </div>
             }
 
             {/* related item data */}
-            <div className="my-[120px]">
+            {/* <div className="my-[120px]">
                 <Heading title="Related Item" description=" "/>
             
                 <Slider {...settings}>
@@ -59,7 +63,7 @@ const  ProductDetails = () => {
                     }
                 </Slider>
                 
-            </div>
+            </div> */}
             {/* related item data */}
         </div>
     </div>

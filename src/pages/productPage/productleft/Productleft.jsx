@@ -26,7 +26,7 @@ const Productleft = ({categoryList , isLoading}) => {
             {categoryList.map((item , index)=>(
             <>
                 <div key={index} className='pr-[16px] hover:bg-gray-500 hover:text-white  cursor-pointer transition-all'>
-                <li className='py-[10px] text-[16px] font-poppins font-normal transition-all hover:pl-[10px] leading-[24px] '>{item}</li>
+                <li className='py-[10px] text-[16px] font-poppins font-normal transition-all hover:pl-[10px] leading-[24px] '>{item.title}</li>
                 
                 </div>
             </>

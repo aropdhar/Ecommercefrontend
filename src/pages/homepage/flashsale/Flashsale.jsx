@@ -10,8 +10,6 @@ const Flashsale = () => {
   const { data, error, isLoading } = useGetAllFlashSaleQuery();
   // const timedate = parseInt(data?.data[0]?.offerDate?.offerDate);
   
- 
-  console.log(data?.data[0].productId.image[0]);
   
 
   const flashSaleProducts = data?.data.map((item)=>{

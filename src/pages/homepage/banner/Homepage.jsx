@@ -4,7 +4,7 @@ import { TfiAngleRight } from 'react-icons/tfi'
 import "slick-carousel/slick/slick.css";
 import Slider from "react-slick";
 import banner from '../../../assets/banner.png'
-import { useGetAllCategoryQuery ,useGetAllBannerQuery } from '../../../Features/Api/exclusiveApi';
+import { useGetAllCategoryQuery , useGetAllBannerQuery } from '../../../Features/Api/exclusiveApi';
 
 
 

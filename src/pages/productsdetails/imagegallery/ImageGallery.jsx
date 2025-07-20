@@ -6,6 +6,9 @@ import banner from '../../../assets/banner.png'
 
 const ImageGallery = ({image}) => {
   const[initialimage , setinitialimage] = useState( image &&(image[0] || 'https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png)'));
+
+  
+  
   
 
   return (

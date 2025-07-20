@@ -6,10 +6,9 @@ import { NavLink } from 'react-router-dom'
 import Returnicons from '../../../assets/return.png'
 import UsediscountPrice from '../../../hooks/UsediscountPrice'
 
+
 const ProductContent = ({ProductDetailsdata}) => {
   
-
-  const {title , description , discountPercentage , price , rating , returnPolicy ,reviews , stock , warrantyInformation} = ProductDetailsdata;
   
   const size = [
     {id: 1 , size: 'XS'},
@@ -22,14 +21,14 @@ const ProductContent = ({ProductDetailsdata}) => {
   return (
     <>
       <div className='flex flex-col gap-y-[16px]'>
-        <h1 className='text-text_000000 font-Inter font-bold text-[24px] leading-[24px] '>{title}</h1>
+        <h1 className='text-text_000000 font-Inter font-bold text-[24px] leading-[24px] '>{ProductDetailsdata.name}</h1>
           <div className='flex items-center gap-x-[10px]'>
-            <Star rating={rating}/>
-            <span className='inline-block text-text_000000 opacity-[0.5]'>{`(${reviews.length} Reviews)`}</span>
-            <span className='instockunderline pl-[10px] text-button_DB4444'>{stock} Stock</span>
+            <Star rating={ProductDetailsdata.rating}/>
+            <span className='inline-block text-text_000000 opacity-[0.5]'>{(`${ProductDetailsdata.review.length}`)} Reviews</span>
+            <span className='instockunderline pl-[10px] text-button_DB4444'>Stock</span>
           </div>
-        <span className='text-text_000000 font-Inter font-normal text-[24px] leading-[24px] text-justify'>$ {Math.round(UsediscountPrice(price , discountPercentage))}</span>
-        <p className='text-text_000000 font-poppins font-normal text-[16px] mt-[8px] leading-[24px] w-[373px] text-justify border-b-[2px] border-b-gray-300 pb-[24px]'>{description}</p>
+        <span className='text-text_000000 font-Inter font-normal text-[24px] leading-[24px] text-justify'>${ProductDetailsdata.price}</span>
+        <p className='text-text_000000 font-poppins font-normal text-[16px] mt-[8px] leading-[24px] w-[373px] text-justify border-b-[2px] border-b-gray-300 pb-[24px]'>{ProductDetailsdata.description}</p>
       </div>
       {/* color and size  */}
       <div className='mt-[24px]'>
@@ -76,7 +75,7 @@ const ProductContent = ({ProductDetailsdata}) => {
            <span className='inline-block text-[40px]'><TbTruckDelivery /></span>
            <div className='flex flex-col gap-x-[8px] '>
               <h1 className='text-[16px] font-poppins font-medium leading-[24px]'>Free Delivery</h1>
-              <NavLink className='text-[12px] font-poppins font-medium leading-[18px] underline'>{warrantyInformation}</NavLink>
+              <NavLink className='text-[12px] font-poppins font-medium leading-[18px] underline'>warrantyInformation</NavLink>
            </div>
          </div>
          <div className='flex items-center w-[399px] gap-x-[16px] border-2 border-black rounded pt-[29px] pr-[51px] pb-[16px] pl-[16px]'>
@@ -85,7 +84,7 @@ const ProductContent = ({ProductDetailsdata}) => {
             </div>
             <div className='flex flex-col gap-x-[8px] '>
               <h1 className='text-[16px] font-poppins font-medium leading-[24px]'>Return Delivery</h1>
-              <p>{returnPolicy}.<NavLink className=" underline ">Details</NavLink></p>
+              <p>returnPolicy.<NavLink className=" underline ">Details</NavLink></p>
             </div>
          </div>
       </div>

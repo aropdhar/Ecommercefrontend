@@ -6,13 +6,19 @@ import { IoStar } from 'react-icons/io5'
 import UsediscountPrice from '../../../hooks/UsediscountPrice' 
 import Star from '../star/Star'
 import { Link } from 'react-router-dom'
-
+import { useNavigate } from "react-router-dom";
 
 const Productcard = ({itemData}) => {
+
+  let navigate = useNavigate();
+
+  const handleproductdetails = (id) =>{
+      navigate(`/productdetails/${id}`);
+      // console.log(id);
+  }
    
   return (
-    <div className='mt-[34px]'>
-      <Link className='inline-block' to={`/productdetails/${itemData.id}`}>  
+    <div className='mt-[34px]' onClick={()=>handleproductdetails(itemData._id)}>  
         <div className='w-[300px]'>
           <div className='bg-white_F5F5F5 relative px-[12px] pt-[12px] pb-[49px] cursor-pointer group'>
 
@@ -59,7 +65,6 @@ const Productcard = ({itemData}) => {
           </div>
         </div>
         </div>
-      </Link>
     </div>
   )
 }

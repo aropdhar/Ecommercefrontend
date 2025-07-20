@@ -21,9 +21,12 @@ export const exclusiveApi = createApi({
     GetAllProduct: builder.query({
       query: () => "/product",
     }),
+    GetAllSingleProduct: builder.query({
+      query: (id) => `/singleproduct/${id}`,
+    }),
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetAllCategoryQuery , useGetAllBannerQuery , useGetAllFlashSaleQuery , useGetAllBestSellingQuery , useGetAllProductQuery} = exclusiveApi
+export const { useGetAllCategoryQuery , useGetAllBannerQuery , useGetAllFlashSaleQuery , useGetAllBestSellingQuery , useGetAllProductQuery , useGetAllSingleProductQuery} = exclusiveApi

@@ -13,6 +13,7 @@ import Footer from '../../Component/Rootlayout/footer/Footer'
 
 
 const Home = () => {
+
   return (
     <>
       <Homepage/>
