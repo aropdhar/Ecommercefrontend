@@ -12,15 +12,14 @@ const Footer = () => {
     <div className='bg-text_000000 pt-[80px] pb-[4px]'>
        <div className='container'>
           <div className='flex items-start justify-between'>
-
             <div className='flex flex-col gap-y-[24px]'>
                 <h1 className='text-[20px] text-white_color leading-[28px] font-poppins font-semibold'>Exclusive</h1>
                 <div className='flex flex-col gap-y-[24px]'>
                     <h3 className='text-[16px] text-white_color leading-[28px] font-poppins font-medium'>Subscribe</h3>
                     <p className='text-[16px] text-white_color leading-[28px] font-poppins font-normal'>Get 10% off your first order</p>
                     <div className='relative flex items-center'>
-                        <input className='w-[217px] text-white bg-transparent border-2 border-white_color p-[10px] rounded-[4px] relative' type="text" placeholder='Enter Your Email'/>
-                        <span className='inline-block text-white_color text-[24px] absolute left-[84%] top-[13px] cursor-pointer'><AiOutlineSend /></span>
+                        <input className='w-[217px] -z-[-1] text-white bg-transparent border-2 border-white_color p-[10px] rounded-[4px] relative' type="text" placeholder='Enter Your Email'/>
+                        <span className='inline-block  text-white_color text-[24px] absolute left-[84%] top-[13px] cursor-pointer'><AiOutlineSend /></span>
                     </div>
                 </div>
             </div>

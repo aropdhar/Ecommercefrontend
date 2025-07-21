@@ -14,7 +14,6 @@ const  ProductDetails = () => {
     
     const { data, error, isLoading } = useGetAllSingleProductQuery(params?.id);
     
-    console.log(data);
     
 
     // const  categorydata  = useGetProductCategoryQuery(data?.category);
@@ -55,11 +54,10 @@ const  ProductDetails = () => {
             
                 <Slider {...settings}>
                     {categorydata?.data?.products.map((item , index)=>(
-                      <div className="px-3">
+                    <div className="px-3">
                         <Productcard itemData={item}/>
-                      </div> 
+                    </div> 
                     ))
-
                     }
                 </Slider>
                 
