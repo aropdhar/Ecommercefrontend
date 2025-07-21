@@ -16,7 +16,6 @@ import price from '../../../assets/price.png'
 
 const ProductList = ({itemData}) => {
 
-    console.log(itemData);
     
   return (
     <div className='mt-[33px]'>
