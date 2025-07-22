@@ -1,29 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Productcommonlayouts from '../../../Component/commoncomponent/product/Productcommonlayouts'
 import Productcard from '../../../Component/commoncomponent/product/Productcard'
-// import { useGetAllProductQuery } from '../../../Features/Api/productApi';
-import { useGetAllProductQuery } from '../../../Features/Api/exclusiveApi';
+import { useGetAllProductQuery , useGetSingleCategoryQuery} from '../../../Features/Api/exclusiveApi';
 import { LuLayoutGrid, LuList } from "react-icons/lu";
 import { Link } from 'react-router-dom';
 import ProductList from '../productlist/ProductList';
 
 
-const ProductRight = () => {
-  // const { data, error, isLoading } = useGetAllProductQuery();
-  const { data, error, isLoading } = useGetAllProductQuery();
+const ProductRight = ({categoryId}) => {
+  
+
+
+  const { data, error, isLoading } = categoryId ? useGetSingleCategoryQuery(categoryId) : useGetAllProductQuery();
+  
+ 
   
   
+  
+  
+
   // grid product section
 
   const [page , setPage] = useState(1);
   const [pagepershow , SetpagePershow] = useState(9);
-  let productlength = data?.data?.length / 9;
+  let productlength = data?.data.length / 9;
 
   // list product Section
   
   const [pageshow , setpageshow] = useState(1);
   const [listpageshow , setListpageshow] = useState(3);
-  let Listproductlength = data?.data?.length / 3;
+  let Listproductlength = data?.data.length / 3;
   const [activeshow , setActiveshow] = useState("grid");
   const [gridshow , setGridshow] = useState("Grid");
   
@@ -78,21 +84,31 @@ const ProductRight = () => {
       {/* Product Grid  */}
       {gridshow == "Grid" && (
         <div className='flex flex-wrap justify-between'>
-          {data?.data?.slice(page * 9 - 9, page * pagepershow).map((item , index)=>(
+          {categoryId ? (data?.data?.product?.slice(page * 9 - 9, page * pagepershow).map((item , index)=>(
             <div className='w-[30%]'>
               <Productcard itemData={item}/>
             </div>
-          ))
+          ))) : (data?.data?.slice(page * 9 - 9, page * pagepershow).map((item , index)=>(
+            <div className='w-[30%]'>
+              <Productcard itemData={item}/>
+            </div>
+          )))
           }
+
+          
        </div>
        )}
 
        {/* product List */}
         {gridshow == "List" && (
           <div>
-            {data?.data?.slice(pageshow * 3 - 3, pageshow * listpageshow).map((item , index)=>(
+            {categoryId ? (data?.data?.product?.slice(pageshow * 3 - 3, pageshow * listpageshow).map((item , index)=>(
               <ProductList itemData={item} />
-            ))}
+            ))) : (data?.data?.slice(pageshow * 3 - 3, pageshow * listpageshow).map((item , index)=>(
+              <ProductList itemData={item} />
+            )))
+
+            }
           </div>
         )}
 

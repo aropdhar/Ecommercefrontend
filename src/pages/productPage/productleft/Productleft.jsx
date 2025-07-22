@@ -3,7 +3,9 @@ import Oval from '../../../assets/Oval.png'
 import Oval1 from '../../../assets/Oval1.png'
 import Oval2 from '../../../assets/Oval2.png'
 
-const Productleft = ({categoryList , isLoading}) => {
+const Productleft = ({categoryList , isLoading , handlecategory = ()=>{}}) => {
+
+
   return (
      <div className='w-[23%] border-r-[2px] border-r-text_7D8184 '>
         <h1 className='text-[20px] font-bold leading-[30px] font-poppins mb-[15px]'>Shop by Category</h1>
@@ -25,7 +27,7 @@ const Productleft = ({categoryList , isLoading}) => {
         (<ul className=''>
             {categoryList.map((item , index)=>(
             <>
-                <div key={index} className='pr-[16px] hover:bg-gray-500 hover:text-white  cursor-pointer transition-all'>
+                <div key={index} className='pr-[16px] hover:bg-gray-500 hover:text-white  cursor-pointer transition-all' onClick={()=> handlecategory(item._id)}>
                 <li className='py-[10px] text-[16px] font-poppins font-normal transition-all hover:pl-[10px] leading-[24px] '>{item.title}</li>
                 
                 </div>

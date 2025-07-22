@@ -7,18 +7,18 @@ import { useParams } from 'react-router-dom'
 import Skeleton from '../../skeleton/Skeleton'
 import Heading from '../../Component/commoncomponent/heading/Heading'
 import Productcard from '../../Component/commoncomponent/product/Productcard'
-import { useGetAllSingleProductQuery } from "../../Features/Api/exclusiveApi";
+import { useGetAllSingleProductQuery , useGetSingleCategoryQuery } from "../../Features/Api/exclusiveApi";
+
+
 
 const  ProductDetails = () => {
     const params = useParams();
     
     const { data, error, isLoading } = useGetAllSingleProductQuery(params?.id);
-    
-    
 
-    // const  categorydata  = useGetProductCategoryQuery(data?.category);
-    
-        
+    const singlecategory = useGetSingleCategoryQuery(data?.data?.category._id);
+
+      
     let settings = {
         dots: false,
         infinite: true,
@@ -49,19 +49,17 @@ const  ProductDetails = () => {
             }
 
             {/* related item data */}
-            {/* <div className="my-[120px]">
-                <Heading title="Related Item" description=" "/>
-            
-                <Slider {...settings}>
-                    {categorydata?.data?.products.map((item , index)=>(
-                    <div className="px-3">
-                        <Productcard itemData={item}/>
-                    </div> 
-                    ))
-                    }
-                </Slider>
-                
-            </div> */}
+                <div className="my-[120px]">
+                    <Heading title="Related Item" description=" "/>
+                        <Slider {...settings}>
+                            {singlecategory?.data?.data?.product.map((item , index)=>(
+                            <div className="px-3">
+                                <Productcard itemData={item}/>
+                            </div> 
+                            ))
+                            }
+                        </Slider>                
+                </div>
             {/* related item data */}
         </div>
     </div>

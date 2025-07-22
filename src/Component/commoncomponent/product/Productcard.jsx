@@ -7,18 +7,25 @@ import UsediscountPrice from '../../../hooks/UsediscountPrice'
 import Star from '../star/Star'
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
+import { addtocart } from '../../../Features/AllSlice/ProductSlice'
 
 const Productcard = ({itemData}) => {
 
   let navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const handleproductdetails = (id) =>{
       navigate(`/productdetails/${id}`);
       // console.log(id);
   }
+
+  const handlecart = (productItem) =>{ 
+      dispatch(addtocart(productItem))
+  }
    
   return (
-    <div className='mt-[34px]' onClick={()=>handleproductdetails(itemData._id)}>  
+    <div className='mt-[34px]'>  
         <div className='w-[300px]'>
           <div className='bg-white_F5F5F5 relative px-[12px] pt-[12px] pb-[49px] cursor-pointer group'>
 
@@ -37,13 +44,13 @@ const Productcard = ({itemData}) => {
               </div> 
           </div>
           
-          <div className='flex justify-center items-center'>
+          <div className='flex justify-center items-center' onClick={()=>handleproductdetails(itemData._id)}>
             <div className='w-[172px] h-[152px]'>
               <img src={itemData ? itemData.image : joystickimg} alt={joystickimg} className='w-full h-full object-contain'/>
             </div>
           </div>
           
-            <div className="opacity-0  w-full h-[41px] bg-text_000000  text-white_color absolute left-0 bottom-0 flex  justify-center items-center cursor-pointer font-poppins text-[16px] font-normal leading-[24px] group-hover:opacity-100 transition-all">
+            <div className="opacity-0  w-full h-[41px] bg-text_000000  text-white_color absolute left-0 bottom-0 flex  justify-center items-center cursor-pointer font-poppins text-[16px] font-normal leading-[24px] group-hover:opacity-100 transition-all" onClick={()=>handlecart(itemData)}>
               <h3>Add To Cart</h3>
             </div>
         </div>
