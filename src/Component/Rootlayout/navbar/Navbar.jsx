@@ -4,17 +4,18 @@ import { CiHeart, CiLogout, CiStar } from 'react-icons/ci';
 import { IoIosCloseCircleOutline, IoMdSearch } from 'react-icons/io';
 import { LuUser } from 'react-icons/lu';
 import { PiShoppingBagOpenLight } from 'react-icons/pi';
-import { NavLink } from 'react-router-dom';
-
-
+import { Link, NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
 
 
 const Navbar = () => {
 
   const [userlog , setUserlog] = useState(false);
   const useractionRef = useRef(null);
+  const product = useSelector((state) => state.ProductStore);
   
   
+
   // user button on/off section
 
     // useEffect(()=>{
@@ -95,12 +96,18 @@ const Navbar = () => {
                       <IoMdSearch className='absolute top-1/1 text-[24px] right-[5px] text-text_000000 cursor-pointer'/>
                   </div>
                   <div className='flex items-center gap-[30px] cursor-pointer'>
-                     <span className='text-[32px] text-text_000000 '>
+                     <Link className='text-[32px] text-text_000000 ' to={'/wishlist'}>
                         <CiHeart />
-                     </span>
-                     <span className='text-[32px] text-text_000000 cursor-pointer cartno'>
-                        <BsCart3 />
-                     </span>
+                     </Link>
+                         <div className='relative'>
+                            <Link to={'/addtocart'} className='text-[32px] text-text_000000 cursor-pointer cartno'>
+                                <BsCart3 />
+                            </Link>
+                            {product?.totalItem > 0 &&(
+                              <span className='absolute left-[60%] top-[-25%] bg-button_DB4444 w-[28px] h-[28px] text-center rounded-[50%] text-[20px] leading-[25px] text-white'>{product?.totalItem}</span>
+                            )}
+                         </div>
+                     
                      <span onClick={handleUser} className='text-[30px] text-white_color bg-button_DB4444 p-[6px] rounded-[50%] cursor-pointer' ref={useractionRef}>
                         <LuUser />
                      </span>

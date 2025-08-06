@@ -22,7 +22,7 @@
   ul,li,ol{
     list-style: none;
   }
-  .cartno{
+  /* .cartno{
     position: relative;
   }
 
@@ -39,7 +39,7 @@
     font-size: 20px;
     border-radius: 50%;
     color: var(--white_color)
-  }
+  } */
   span{
     display: inline-block
   }

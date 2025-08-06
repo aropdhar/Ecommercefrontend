@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  value: localStorage.getItem("category") ? JSON.parse(localStorage.getItem("category")) || [] : null,
+  value: localStorage.getItem("category") ? JSON.parse(localStorage.getItem("category")) : [],
 }
 
 export const counterSlice = createSlice({
@@ -10,7 +10,7 @@ export const counterSlice = createSlice({
   reducers: {
     getCategory: (state, action) => {
       state.value = action.payload;
-      localStorage.setItem("category" , JSON.stringify(state.value))
+      localStorage.setItem("category" , JSON.stringify(state.value))   
     },
   },
 })

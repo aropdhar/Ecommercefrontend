@@ -9,46 +9,67 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import { addtocart } from '../../../Features/AllSlice/ProductSlice'
+import { RiDeleteBin5Line } from 'react-icons/ri'
+import { wishlistadd } from '../../../Features/AllSlice/wishListSlice'
 
-const Productcard = ({itemData}) => {
-
-  let navigate = useNavigate();
+const Productcard = ({itemData , whishlistRemove}) => {
+  
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const handleproductdetails = (id) =>{
-      navigate(`/productdetails/${id}`);
-      // console.log(id);
+  const handlecart = (productItem) =>{ 
+      dispatch(addtocart(productItem));
+  }
+  
+  const handleproduct = (productId) =>{
+     navigate(`/productdetails/${productId._id}`)
+  }
+  
+  const handleWishlist = (wishlistData) =>{
+   dispatch(wishlistadd(wishlistData))
   }
 
-  const handlecart = (productItem) =>{ 
-      dispatch(addtocart(productItem))
-  }
-   
+
   return (
     <div className='mt-[34px]'>  
         <div className='w-[300px]'>
-          <div className='bg-white_F5F5F5 relative px-[12px] pt-[12px] pb-[49px] cursor-pointer group'>
+          <div className='bg-white_F5F5F5 relative px-[12px] pt-[12px] pb-[49px]  group'>
 
           <div className='flex items-start justify-between '>
               {itemData.discountPrice && (
                 <span className='bg-[red] inline-block rounded-[4px] py-[4px] px-[12px] text-white_color font-normal font-poppins text-[12px]'>-{itemData ? itemData.discountPrice : 0}%</span>
               )}
+               
+               {whishlistRemove ?
 
-              <div className='flex flex-col gap-y-[8px]'>
-                  <span className='w-[34px] h-[34px] bg-white_color text-[24px] text-text_000000 rounded-full flex justify-center hover:bg-button_DB4444 hover:text-white_color transition-all items-center cursor-pointer'>
-                    <CiHeart />
-                  </span>
-                  <span className='w-[34px] h-[34px] bg-white_color text-[24px] text-text_000000 rounded-full flex justify-center items-center cursor-pointer hover:bg-button_DB4444 hover:text-white_color transition-all'>
-                    <FiEye />
-                  </span>
-              </div> 
+                   ""
+
+                 :
+
+                <div className='flex flex-col gap-y-[8px]'>
+                    <span className='w-[34px] h-[34px] bg-white_color text-[24px] text-text_000000 rounded-full flex justify-center hover:bg-button_DB4444 hover:text-white_color transition-all items-center cursor-pointer' onClick={()=>handleWishlist(itemData)}>
+                      <CiHeart />
+                    </span>
+                    <span className='w-[34px] h-[34px] bg-white_color text-[24px] text-text_000000 rounded-full flex justify-center items-center cursor-pointer hover:bg-button_DB4444 hover:text-white_color transition-all'>
+                      <FiEye />
+                    </span>
+                </div> 
+               }
           </div>
-          
-          <div className='flex justify-center items-center' onClick={()=>handleproductdetails(itemData._id)}>
-            <div className='w-[172px] h-[152px]'>
-              <img src={itemData ? itemData.image : joystickimg} alt={joystickimg} className='w-full h-full object-contain'/>
+
+          {whishlistRemove && (
+            <div className='flex items-end justify-end'>
+              <span className='w-[30px] h-[30px] bg-white flex items-center justify-center text-[20px] rounded-[50%] cursor-pointer' ><RiDeleteBin5Line /></span>
             </div>
-          </div>
+          )}
+
+         
+            <div className='flex cursor-pointer items-center justify-center' onClick={()=>handleproduct(itemData)}>
+              <div className='w-[172px] h-[152px] overflow-hidden'>
+                <img src={itemData ? itemData.image : joystickimg} alt={joystickimg} className='w-full h-full object-cover'/>
+              </div>
+            </div>
+        
           
             <div className="opacity-0  w-full h-[41px] bg-text_000000  text-white_color absolute left-0 bottom-0 flex  justify-center items-center cursor-pointer font-poppins text-[16px] font-normal leading-[24px] group-hover:opacity-100 transition-all" onClick={()=>handlecart(itemData)}>
               <h3>Add To Cart</h3>

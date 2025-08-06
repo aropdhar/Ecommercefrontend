@@ -9,16 +9,8 @@ import ProductList from '../productlist/ProductList';
 
 const ProductRight = ({categoryId}) => {
   
-
-
   const { data, error, isLoading } = categoryId ? useGetSingleCategoryQuery(categoryId) : useGetAllProductQuery();
   
- 
-  
-  
-  
-  
-
   // grid product section
 
   const [page , setPage] = useState(1);

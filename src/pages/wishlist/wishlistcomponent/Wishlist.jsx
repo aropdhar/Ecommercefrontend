@@ -4,12 +4,11 @@ import { useGetAllProductQuery , useGetProductCategoryQuery} from '../../../Feat
 import Slider from "react-slick";
 import Productcard from '../../../Component/commoncomponent/product/Productcard';
 import Heading from '../../../Component/commoncomponent/heading/Heading';
+import { useSelector } from 'react-redux';
 
 const WishlistComponent = () => {
     const {data , error , isLoading} = useGetAllProductQuery();
-    const justforyou = useGetProductCategoryQuery("smartphones");
-    console.log(justforyou?.data?.products);
-    
+    const justforyou = useGetProductCategoryQuery("smartphones");  
 
     let settings = {
         dots: false,
@@ -35,7 +34,7 @@ const WishlistComponent = () => {
           <Slider {...settings}>
             {data?.products?.map((item)=>(
                 <div className='pr-[15px]'>
-                    <Productcard itemData={item}/>
+                    <Productcard whishlistRemove={true} itemData={item}/>
                 </div>
             ))
 
