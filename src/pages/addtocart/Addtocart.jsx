@@ -52,7 +52,7 @@ const Addtocart = () => {
           <div className='w-full h-[500px] overflow-y-scroll'> 
                {product.map((item)=>(                  
                   <div className='flex flex-col gap-y-[40px]'>
-                     <div className='flex items-center shadow-lg  py-[20px] px-[40px]   justify-between rounded mt-[40px]'>
+                     <div className='flex items-center shadow-lg  py-[20px] px-[40px]  justify-between rounded mt-[40px]'>
                         <div className='flex flex-1 justify-start items-center gap-x-[20px]'>
                            <div className='relative w-[54px] h-[54px] overflow-hidden'>
                               <img className='w-full h-full object-cover' src={item.image} alt={computer} />

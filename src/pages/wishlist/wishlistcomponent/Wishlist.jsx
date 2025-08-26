@@ -9,7 +9,8 @@ import { useSelector } from 'react-redux';
 const WishlistComponent = () => {
     const {data , error , isLoading} = useGetAllProductQuery();
     const justforyou = useGetProductCategoryQuery("smartphones");  
-
+    const wishlistItem = useSelector((state) => state.wishListStore.value)
+    
     let settings = {
         dots: false,
         infinite: true,
@@ -25,14 +26,14 @@ const WishlistComponent = () => {
           <Breadcrum/>
           <div className='flex items-center justify-between'>
               <div>
-                <h1 className='font-poppins text-[20px] font-normal leading-[26px] '>Wishlist (4)</h1>
+                <h1 className='font-poppins text-[20px] font-normal leading-[26px] '>Wishlist ({`${wishlistItem.length}`})</h1>
               </div>
               <button className='border-2 border-black px-[48px] py-[16px] font-poppins text-[16px] font-medium leading-[24px] rounded'>Move All To Bag</button>
           </div>
           
           {/* wishlist product list */}
           <Slider {...settings}>
-            {data?.products?.map((item)=>(
+            {wishlistItem?.map((item)=>(
                 <div className='pr-[15px]'>
                     <Productcard whishlistRemove={true} itemData={item}/>
                 </div>

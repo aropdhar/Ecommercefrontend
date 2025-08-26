@@ -35,7 +35,7 @@ const Timer = ({timeofOffer}) => {
 
   return (
     <>
-       <div className='flex items-center gap-x-[30px]'>
+      <div className='flex items-center gap-x-[30px]'>
 
           <div className='flex flex-col items-start gap-y-[8px]'>
               <span className='font-poppins font-medium text-[12px] leading-[18px] text-text_000000'>Days</span>
@@ -43,7 +43,6 @@ const Timer = ({timeofOffer}) => {
                 <p className='font-Inter font-bold text-[32px] leading-[30px]'> {days < 10 ? `0${days}` : days} </p>
                 <span className='text-[25px] font-semibold block text-red'> <RxDotsVertical /></span>
               </div>
-           
           </div>
 
           <div className='flex flex-col items-start gap-y-[8px]'>
@@ -68,7 +67,7 @@ const Timer = ({timeofOffer}) => {
               <p className='font-Inter font-bold text-[32px] leading-[30px]'>{second}</p>
            </div>
 
-        </div> 
+      </div> 
     </>
   )
 }

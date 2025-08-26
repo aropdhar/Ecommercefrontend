@@ -6,8 +6,8 @@ const ThreeDotsLoader = () => {
     <div className='flex items-center justify-center'>
       <ThreeDots
         visible={true}
-        height="80"
-        width="80"
+        height="60"
+        width="60"
         color="#4fa94d"
         radius="9"
         ariaLabel="three-dots-loading"

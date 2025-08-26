@@ -5,22 +5,26 @@ import { Link, NavLink } from 'react-router-dom'
 import { FaEye, FaEyeSlash } from 'react-icons/fa6'
 import { useFormik } from 'formik';
 import Signupvalidation from '../../../validation/signupvalidation/Signupvalidation'
-import { ErrorToast } from '../../../utils/toast'
+import { ErrorToast, SuccessToast } from '../../../utils/toast'
 import { AxiosInstance } from '../../../Component/commoncomponent/axios/AxiosInstance'
 import { ThreeDots } from 'react-loader-spinner'
 import ThreeDotsLoader from '../../../utils/threedots/ThreeDotsLoader'
-
+import { useNavigate } from 'react-router-dom'
 
 
 const Signup = () => {
-
+    
+    const navigate = useNavigate();
     const [eye , setEye] = useState(false);
     const [confirmeye , setConfirmeye] = useState(false);
     const [loading , setLoading] = useState(false)
+    
+    
+    
 
     const intialvalue = {
-        FirstName: "",
-        Email_Adress: "",
+        Firstname: "",
+        Email_Address: "",
         password: "",
         confirm_password: "",
         agree: false
@@ -30,27 +34,42 @@ const Signup = () => {
      initialValues: intialvalue,
      validationSchema: Signupvalidation,
      onSubmit: async(values , actions) => {
-       setLoading(true)
+       setLoading(true)       
        try {
         
-        const {FirstName , Email_Adress , password , confirm_password , agree} = values;
+        const {Firstname , Email_Address , password , confirm_password , agree} = values;
         
         if(password !== confirm_password){
           ErrorToast("Passwor Is Not Match");
         }else{
          const response = await AxiosInstance.post('/registration',{
-              FirstName: FirstName,
-              Email_Adress: Email_Adress,
+              FirstName: Firstname,
+              Email_Adress: Email_Address,
               Password: password
           })
-          console.log(response);
+
+          const {data , statusText} = response;
+                  
+          if(statusText.toLocaleLowerCase() == "OK".toLocaleLowerCase()){
+            SuccessToast(`${data?.data[0].FirstName} Registration SuccessFully!!`);
+            setLoading(false)
+            actions.resetForm()
+          }
+          
         }
 
        } catch (error) {
-        console.error("Error From HandleSignup" , error);
+
+        const {data , statusText} = error.response;
+        
+        if(statusText == "Bad Request"){
+           ErrorToast(data.message)
+        }
+        
        }finally{
           setLoading(false)
-       }
+          actions.resetForm()
+        }
      },
    });
 
@@ -68,28 +87,28 @@ const Signup = () => {
                     <div className='flex flex-col gap-y-[40px]'>
                         <div className='flex flex-col gap-y-[10px] w-[370px]'>
                              <input className='outline-none border-b-2 border-[rgba(0, 0, 0, 0.1)] py-[8px] w-[360px]'
-                                id="FirstName"
-                                name="FirstName" 
+                                id="Firstname"
+                                name="Firstname" 
                                 type="text" 
                                 placeholder='FirstName' 
                                 onChange={formik.handleChange}
-                                value={formik.values.FirstName}
+                                value={formik.values.Firstname}
                              />
-                              {formik.touched.FirstName && formik.errors.FirstName ? (
-                                <div className='text-red'>{formik.errors.FirstName}</div>
+                              {formik.touched.Firstname && formik.errors.Firstname ? (
+                                <div className='text-red'>{formik.errors.Firstname}</div>
                               ) : null}
                         </div>
                         <div className='flex flex-col gap-y-[10px] w-[370px]'>
                             <input className='outline-none border-b-2 border-[rgba(0, 0, 0, 0.1)] py-[8px] w-[360px]'
-                                id="Email_Adress"
-                                name="Email_Adress" 
+                                id="Email_Address"
+                                name="Email_Address" 
                                 type="text" 
                                 placeholder='Email or Phone Number'
                                 onChange={formik.handleChange}
-                                value={formik.values.Email_Adress}
+                                value={formik.values.Email_Address}
                             />
-                             {formik.touched.Email_Adress && formik.errors.Email_Adress ? (
-                                <div className='text-red'>{formik.errors.Email_Adress}</div>
+                             {formik.touched.Email_Address && formik.errors.Email_Address ? (
+                                <div className='text-red'>{formik.errors.Email_Address}</div>
                              ) : null}
                         </div>
                         <div className='flex flex-col gap-y-[10px] relative  w-[370px]'>

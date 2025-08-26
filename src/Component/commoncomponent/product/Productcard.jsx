@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CiHeart, CiStar } from 'react-icons/ci'
 import { FiEye } from 'react-icons/fi'
 import joystickimg from '../../../assets/joystick.png'
@@ -16,7 +16,7 @@ const Productcard = ({itemData , whishlistRemove}) => {
   
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
+  
   const handlecart = (productItem) =>{ 
       dispatch(addtocart(productItem));
   }
@@ -26,7 +26,7 @@ const Productcard = ({itemData , whishlistRemove}) => {
   }
   
   const handleWishlist = (wishlistData) =>{
-   dispatch(wishlistadd(wishlistData))
+     dispatch(wishlistadd(wishlistData))
   }
 
 
@@ -42,13 +42,15 @@ const Productcard = ({itemData , whishlistRemove}) => {
                
                {whishlistRemove ?
 
-                   ""
+                   <div className='flex items-end justify-end'>
+                    <span className='w-[30px] h-[30px] bg-white flex items-center justify-center text-[20px] rounded-[50%] cursor-pointer' ><RiDeleteBin5Line /></span>
+                  </div>
 
                  :
 
                 <div className='flex flex-col gap-y-[8px]'>
                     <span className='w-[34px] h-[34px] bg-white_color text-[24px] text-text_000000 rounded-full flex justify-center hover:bg-button_DB4444 hover:text-white_color transition-all items-center cursor-pointer' onClick={()=>handleWishlist(itemData)}>
-                      <CiHeart />
+                        <CiHeart />                     
                     </span>
                     <span className='w-[34px] h-[34px] bg-white_color text-[24px] text-text_000000 rounded-full flex justify-center items-center cursor-pointer hover:bg-button_DB4444 hover:text-white_color transition-all'>
                       <FiEye />
@@ -56,14 +58,7 @@ const Productcard = ({itemData , whishlistRemove}) => {
                 </div> 
                }
           </div>
-
-          {whishlistRemove && (
-            <div className='flex items-end justify-end'>
-              <span className='w-[30px] h-[30px] bg-white flex items-center justify-center text-[20px] rounded-[50%] cursor-pointer' ><RiDeleteBin5Line /></span>
-            </div>
-          )}
-
-         
+    
             <div className='flex cursor-pointer items-center justify-center' onClick={()=>handleproduct(itemData)}>
               <div className='w-[172px] h-[152px] overflow-hidden'>
                 <img src={itemData ? itemData.image : joystickimg} alt={joystickimg} className='w-full h-full object-cover'/>
