@@ -1,10 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AxiosInstance } from '../../Component/commoncomponent/axios/AxiosInstance';
+import { ErrorToast, SuccessToast } from '../../utils/toast';
 
 const OtpVerify = () => {
     
+    
     const params = useParams()
+    const navigate = useNavigate()
     const [inputerr, setinputerr] = useState(false);
     const [otp, setotp] = useState(new Array(4).fill(""));
     const [finalOtp, setFinalOtp] = useState("");
@@ -54,11 +57,25 @@ const OtpVerify = () => {
   };
   
   const handleotpverify =  async () =>{
+    
+    const {Email} = params;
 
-    const response = await AxiosInstance.post('/otp-verification',{
-       Email_Adress: params.Email,  
-       OTP: finalOtp
-    })
+    try {
+        const response = await AxiosInstance.post('/otp-verification',{
+            Email_Adress: Email,  
+            OTP: finalOtp
+       })
+       
+       if(response?.data?.error == "OTP Verfied"){
+           SuccessToast(response?.data?.error);
+           setInterval(() => {
+              navigate('/login')
+           }, 3000);
+       }
+
+    } catch (error) {
+        ErrorToast(error?.response?.data?.message)
+    }
   }
 
   return (
@@ -87,7 +104,8 @@ const OtpVerify = () => {
                                     ref={(input) => (inputRef.current[index] = input)}
                                     onChange={(e) => HandleInputChange(e, index)}
                                     onKeyDown={(e) => HandlekeyDown(e, index)}
-                                    onClick={(e) => HandleInput(e, index)}/>
+                                    // onClick={(e) => HandleInput(e, index)}
+                                    />
                                 </div> 
                             ))}
                         </div>

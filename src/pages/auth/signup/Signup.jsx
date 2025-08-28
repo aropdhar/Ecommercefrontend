@@ -51,9 +51,12 @@ const Signup = () => {
           const {data , statusText} = response;
                   
           if(statusText.toLocaleLowerCase() == "OK".toLocaleLowerCase()){
-            SuccessToast(`${data?.data[0].FirstName} Registration SuccessFully!!`);
+            SuccessToast(`Registration SuccessFully!!Please Check Email${Email_Address}`);
             setLoading(false)
             actions.resetForm()
+            // setInterval(() => {
+            //   window.open("https://mail.google.com", "_blank");  
+            // }, 2000);
           }
           
         }

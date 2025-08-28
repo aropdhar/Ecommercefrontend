@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import image from '../../../assets/login.png'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import video from '../../../assets/loginvideo.gif'
 import { useFormik } from 'formik';
 import Loginvalidation from '../../../validation/loginvalidation/Loginvalidation';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { AxiosInstance } from '../../../Component/commoncomponent/axios/AxiosInstance';
+import { ErrorToast, SuccessToast } from '../../../utils/toast';
 
 const Login = () => {
-
+    
+    const naviagte = useNavigate();
     const [eye , setEye] = useState(false);
 
     const initialvalue = {
@@ -18,8 +21,29 @@ const Login = () => {
     const formik = useFormik({
         initialValues: initialvalue,
         validationSchema: Loginvalidation,
-        onSubmit: (values , actions)   => {
-          console.log(values);
+        onSubmit: async (values , actions)   => {
+        
+            
+                try {
+
+                    const response = await  AxiosInstance.post("/login" , {
+                        Email_Adress: values.email,
+                        Password: values.password,
+                    });
+
+                    
+                   if(response.statusText.toLowerCase() == "OK".toLowerCase()){
+                      SuccessToast(response?.data?.message);
+                      setInterval(() => {
+                        naviagte('/')
+                      }, 2000);
+                   }
+                    
+
+                } catch (error) {
+                    ErrorToast(error?.response?.data?.message)
+                }
+          
         },
       });
   return (
@@ -74,6 +98,11 @@ const Login = () => {
                         </div>
                     </div> 
                 </form>
+
+                    <div className='ml-12 '>
+                        <p className='flex items-center gap-x-[10px]'>Don't have an account? <NavLink to={'/signup'} className="text-[#1e71ff]">Sign up</NavLink></p>
+                    </div>
+
                 </div>
             </div>
         </div>
