@@ -19,8 +19,6 @@ const Signup = () => {
     const [confirmeye , setConfirmeye] = useState(false);
     const [loading , setLoading] = useState(false)
     
-    
-    
 
     const intialvalue = {
         Firstname: "",
@@ -40,7 +38,7 @@ const Signup = () => {
         const {Firstname , Email_Address , password , confirm_password , agree} = values;
         
         if(password !== confirm_password){
-          ErrorToast("Passwor Is Not Match");
+          ErrorToast("Password Is Not Match");
         }else{
          const response = await AxiosInstance.post('/registration',{
               FirstName: Firstname,
