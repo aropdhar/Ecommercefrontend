@@ -16,8 +16,6 @@ const Navbar = () => {
   const product = useSelector((state) => state.ProductStore);
   const { data, error, isLoading } = useGetUserWiseCartQuery();
   
-  
-
   // user button on/off section
 
     // useEffect(()=>{
