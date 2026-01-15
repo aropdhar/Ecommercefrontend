@@ -6,6 +6,7 @@ import { LuUser } from 'react-icons/lu';
 import { PiShoppingBagOpenLight } from 'react-icons/pi';
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
+import { useGetUserWiseCartQuery } from '../../../Features/Api/exclusiveApi';
 
 
 const Navbar = () => {
@@ -13,6 +14,7 @@ const Navbar = () => {
   const [userlog , setUserlog] = useState(false);
   const useractionRef = useRef(null);
   const product = useSelector((state) => state.ProductStore);
+  const { data, error, isLoading } = useGetUserWiseCartQuery();
   
   
 
@@ -104,7 +106,7 @@ const Navbar = () => {
                                 <BsCart3 />
                             </Link>
                             {product?.totalItem > 0 &&(
-                              <span className='absolute left-[60%] top-[-25%] bg-button_DB4444 w-[28px] h-[28px] text-center rounded-[50%] text-[20px] leading-[25px] text-white'>{product?.totalItem}</span>
+                              <span className='absolute left-[60%] top-[-25%] bg-button_DB4444 w-[28px] h-[28px] text-center rounded-[50%] text-[20px] leading-[25px] text-white'>{data?.data?.cart?.length}</span>
                             )}
                          </div>
                      

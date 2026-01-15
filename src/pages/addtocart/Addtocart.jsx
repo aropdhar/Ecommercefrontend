@@ -1,35 +1,60 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Breadcrum from '../../Component/commoncomponent/breadcrum/Breadcrum'
 import computer from '../../assets/computer.png'
 import { IoIosArrowDown, IoIosArrowUp, IoMdClose } from 'react-icons/io'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { removecart , incrementCart , decrementCart , getTotal } from '../../Features/AllSlice/ProductSlice'
+import { useGetUserWiseCartQuery , useDeleteCartItemMutation} from '../../Features/Api/exclusiveApi'
+import { SuccessToast } from '../../utils/toast'
+import { AxiosInstance } from '../../Component/commoncomponent/axios/AxiosInstance'
 
 const Addtocart = () => {
      
-     const dispatch = useDispatch()
-     const product = useSelector((state) => state.ProductStore.value)
-     const total = useSelector((state) => state.ProductStore)
+   //   const dispatch = useDispatch()
+   //   const product = useSelector((state) => state.ProductStore.value)
+   //   const total = useSelector((state) => state.ProductStore)
+     const { data, error, isLoading } = useGetUserWiseCartQuery();
      
-     useEffect(()=>{
+     console.log(data?.data?.cart?.length);
+     
+     
+     const CartItem = data?.data?.cart?.map((item)=>{
+
+       const AllCartItem = {}
+       const {product , quantity} = item;
+       const {name , price , image } = product;
+       AllCartItem.name = name;
+       AllCartItem.price = price;
+       AllCartItem.image = image;
+       AllCartItem.quantity = quantity;
+       AllCartItem.id = item._id;
+       return AllCartItem;
+
+     })
+     
+     const totalcalculate = data?.data
+     
+   //   get sub total 
+   
+   //   useEffect(()=>{
       
-      dispatch(getTotal())
+   //    dispatch(getTotal())
 
-     },[dispatch , localStorage.getItem('cartItem')])
+   //   },[dispatch , localStorage.getItem('cartItem')])
      
+     const [DeleteCartItem] = useDeleteCartItemMutation();
+       
+     const handlecart = async (Itemid) =>{
+      try {
 
-
-     const handlecart = (cartItem) =>{
-       dispatch(removecart(cartItem))
+         const response = await DeleteCartItem(Itemid);
+      
+      } catch (error) {
+         console.error("from handlecartdelte error" , error);
+         
+      }
      }
      
-     const handleincrement = (item) =>{
-       dispatch(incrementCart(item));
-     }
-
-     const handledecrement = (item) =>{
-      dispatch(decrementCart(item))
-     }
    
   return (
     <div className='mb-[84px]'>
@@ -50,18 +75,18 @@ const Addtocart = () => {
              </div>
           </div>
           <div className='w-full h-[500px] overflow-y-scroll'> 
-               {product.map((item)=>(                  
+               {CartItem?.map((item)=>(                  
                   <div className='flex flex-col gap-y-[40px]'>
                      <div className='flex items-center shadow-lg  py-[20px] px-[40px]  justify-between rounded mt-[40px]'>
                         <div className='flex flex-1 justify-start items-center gap-x-[20px]'>
                            <div className='relative w-[54px] h-[54px] overflow-hidden'>
-                              <img className='w-full h-full object-cover' src={item.image} alt={computer} />
-                              <span className='absolute left-0 top-0 inline-block text-white bg-button_DB4444 rounded-[50%] cursor-pointer' onClick={()=> handlecart(item)}><IoMdClose /></span>
+                              <img className='w-full h-full object-cover' src={item?.image} alt={item?.image} />
+                              <span className='absolute left-0 top-0 inline-block text-white bg-button_DB4444 rounded-[50%] cursor-pointer' onClick={()=> handlecart(item.id)}><IoMdClose /></span>
                            </div>
-                           <h1>{item.name}</h1>
+                           <h1>{item?.name}</h1>
                         </div>
                         <div className='flex flex-1 justify-center'>
-                           <h1>${item.price}</h1>
+                           <h1>${item?.price}</h1>
                         </div>
                         <div className='flex flex-1 justify-center'>
                            <div className='flex items-center border py-[6px] px-[12px] rounded border-gray-300 gap-x-[4px]'>
@@ -69,7 +94,7 @@ const Addtocart = () => {
                                  <input
                                     type="text"
                                     className="w-[25px] text-[18px] font-poppins font-normal"
-                                    value={item.cartQuantity}
+                                    value={item?.quantity}
                                  />
                               </div>
                               <div className='flex flex-col cursor-pointer text-[16px]'>
@@ -80,7 +105,7 @@ const Addtocart = () => {
                            </div>
                         </div>
                         <div className='flex flex-1 justify-end'>
-                           <h1>${parseInt(item.price.replace(/,/g, "")) * item.cartQuantity}</h1>
+                           <h1> ${(typeof item.price === "string" ? parseFloat(item?.price?.replace(/,/g, "")) : item?.price) * item?.quantity}</h1>
                         </div>
                      </div>
                   </div>
@@ -106,11 +131,11 @@ const Addtocart = () => {
                 </div>
                 <div className='flex items-center border-b-2 border-black pb-[16px] justify-between w-[470px] mt-[24px]'>
                      <h1>Quantity:</h1>
-                     <span>{total.totalItem}</span>
+                     <span>{totalcalculate?.totalquantity}</span>
                 </div>
                 <div className='flex items-center  pb-[16px] justify-between w-[470px] mt-[24px]'>
                       <h1>SubTotal:</h1>
-                      <span>${total.totalAmount}</span>
+                      <span>${totalcalculate?.totalprice}</span>
                 </div>
                 <button className='py-[16px] px-[48px] text-[16px] font-poppins font-medium rounded ml-[137px] text-white bg-button_DB4444 '>Process to Checkout</button>
             </div>

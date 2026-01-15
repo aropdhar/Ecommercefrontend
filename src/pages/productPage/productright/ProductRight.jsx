@@ -98,9 +98,7 @@ const ProductRight = ({categoryId}) => {
               <ProductList itemData={item} />
             ))) : (data?.data?.slice(pageshow * 3 - 3, pageshow * listpageshow).map((item , index)=>(
               <ProductList itemData={item} />
-            )))
-
-            }
+            )))}
           </div>
         )}
 

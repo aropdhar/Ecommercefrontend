@@ -95,7 +95,7 @@ const Signup = () => {
                                 onChange={formik.handleChange}
                                 value={formik.values.Firstname}
                              />
-                              {formik.touched.Firstname && formik.errors.Firstname ? (
+                              {formik.touched.Firstname && formik.errors.Firstname  ? (
                                 <div className='text-red'>{formik.errors.Firstname}</div>
                               ) : null}
                         </div>

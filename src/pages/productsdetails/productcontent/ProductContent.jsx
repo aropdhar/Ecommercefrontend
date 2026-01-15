@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Star from '../../../Component/commoncomponent/star/Star'
 import { CiHeart } from 'react-icons/ci'
 import { TbTruckDelivery } from 'react-icons/tb'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import Returnicons from '../../../assets/return.png'
 import UsediscountPrice from '../../../hooks/UsediscountPrice'
+import { AxiosInstance } from '../../../Component/commoncomponent/axios/AxiosInstance'
+import { SuccessToast } from '../../../utils/toast'
 
 
 const ProductContent = ({ProductDetailsdata}) => {
+  
+  const {id} = useParams();
+  
   
   
   const size = [
@@ -17,6 +22,38 @@ const ProductContent = ({ProductDetailsdata}) => {
     {id: 4 , size: 'L'},
     {id: 5 , size: 'XL'},
   ]
+  
+  const [loading , setloading] = useState(false);
+  const [quantity , setQuantity] = useState(1);
+  
+  const handleDecrement = () =>{
+    if(quantity > 1){
+      setQuantity(quantity - 1);
+    }
+  }
+  
+  
+  const handleaddtocart = async () =>{
+    setloading(true)
+    try {
+      
+      const response = await AxiosInstance.post('/cart' ,{
+         product: id,
+         quantity: quantity
+      },{
+        withCredentials: true
+      })
+      
+      if(response?.statusText.toLowerCase() == "OK".toLowerCase()){
+        SuccessToast(response?.data?.message)
+      }
+    } catch (error) {
+      console.error("Error From Add To Cart" , error);
+    }finally{
+      setloading(false)
+      setQuantity(1)
+    }
+  }
 
   return (
     <>
@@ -57,14 +94,19 @@ const ProductContent = ({ProductDetailsdata}) => {
       {/* card selected button */}
       <div className='mt-[24px] flex items-center gap-x-[16px]'>
          <div className='flex items-center'>
-            <span className='border-[2px] border-gray-300  rounded-l-[4px] w-[40px] h-[44px] flex items-center justify-center text-[24px] font-bold  py-[5px] px-[8px] cursor-pointer hover:bg-button_DB4444 transition-all duration-300 hover:text-white'>-</span>
-            <span className='border-[2px] border-gray-300  text-[20px] font-medium  w-[60px] h-[44px] flex items-center justify-center py-[5px] '>2</span>
-            <span className='border-[2px] border-gray-300  rounded-r-[4px] text-[24px] font-bold w-[40px] h-[44px] flex items-center justify-center py-[5px] px-[8px] cursor-pointer hover:bg-button_DB4444 transition-all duration-300 hover:text-white'>+</span>
+            <span onClick={handleDecrement} className='border-[2px] border-gray-300  rounded-l-[4px] w-[40px] h-[44px] flex items-center justify-center text-[24px] font-bold  py-[5px] px-[8px] cursor-pointer hover:bg-button_DB4444 transition-all duration-300 hover:text-white'>-</span>
+            <input className='border-[2px] border-gray-300  text-[20px] font-medium  w-[60px] h-[44px] pl-6  flex items-center justify-center py-[5px] ' value={quantity} />
+            <span onClick={()=>setQuantity(quantity + 1)} className='border-[2px] border-gray-300  rounded-r-[4px] text-[24px] font-bold w-[40px] h-[44px] flex items-center justify-center py-[5px] px-[8px] cursor-pointer hover:bg-button_DB4444 transition-all duration-300 hover:text-white'>+</span>
          </div>
          <div>
-           <button className='bg-button_DB4444 py-[10px] px-[48px] text-[16px] text-white font-medium leading-[24px] rounded'>Buy Now </button>
+          {loading ?
+            (<button onClick={handleaddtocart} className='bg-button_DB4444 py-[10px] px-[48px] text-[16px] text-white font-medium leading-[24px] rounded'>Loading....</button>)
+          :
+
+           (<button onClick={handleaddtocart} className='bg-button_DB4444 py-[10px] px-[48px] text-[16px] text-white font-medium leading-[24px] rounded'>Add To Cart</button>)
+          }
          </div>
-         <div className='border-2 w-[40px] flex items-center justify-center hover:bg-button_DB4444 hover:text-white text-[32px] rounded h-[40px] cursor-pointer border-black border-opacity-[0.5]'>
+         <div className='border-2 w-[40px] flex items-center justify-center hover:bg-button_DB4444 hover:text-white text-[32px] rounded h-[40px] cursor-pointer border-black hover:border-white border-opacity-[0.5]'>
            <span><CiHeart /></span>
          </div>
       </div>

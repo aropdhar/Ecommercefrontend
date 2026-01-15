@@ -35,9 +35,7 @@ const Login = () => {
                     
                    if(response.statusText.toLowerCase() == "OK".toLowerCase()){
                       SuccessToast(response?.data?.message);
-                      setInterval(() => {
-                        naviagte('/')
-                      }, 2000);
+                      naviagte('/')
                    }
                     
 

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { SuccessToast , ErrorToast , InfoToast } from '../../utils/toast';
 
 const initialState = {
-  value: localStorage.getItem("cartItem") ? JSON.parse(localStorage.getItem("cartItem")) || [] : null,
+  value: localStorage.getItem("cartItem") ? JSON.parse(localStorage.getItem("cartItem")) : [],
   totalAmount: 0,
   totalItem: 0
 }
@@ -73,8 +73,8 @@ export const ProductSlice = createSlice({
       const total = state.value.reduce(
       (initialValue, item) => {
         const { price, cartQuantity } = item;
-        const TotalPrice = parseFloat(price.replace(/,/g, "")) * cartQuantity;
-        initialValue.amount += TotalPrice;
+        const TotalPrice = typeof price === "string" ? parseFloat(price.replace(/,/g, "")) : price;
+        initialValue.amount += TotalPrice * cartQuantity;
         initialValue.quantity += cartQuantity;
 
         return initialValue;

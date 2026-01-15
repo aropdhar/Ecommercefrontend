@@ -20,6 +20,9 @@ import Contact from './pages/contact/Contact';
 import Forgetpassword from './pages/auth/forgatpassword/Forgetpassword';
 import Checkout from './pages/checkout/Checkout';
 import OtpVerify from './pages/otpverify/OtpVerify';
+import PaymentSuccess from './pages/paymentsuccess/PaymentSuccess';
+import PaymentError from './pages/paymenterror/PaymentError';
+import PaymentCancel from './pages/paymentcancel/PaymentCancel';
 
 
 const router = createBrowserRouter(
@@ -40,6 +43,9 @@ const router = createBrowserRouter(
         <Route path='/forgetpassword' element={<Forgetpassword/>}/>
         <Route path='/checkout' element={<Checkout/>}/>
         <Route path='/verifyotp/:Email' element={<OtpVerify/>}/>
+        <Route path='/success' element={<PaymentSuccess/>}/>
+        <Route path='/failed' element={<PaymentError/>}/>
+        <Route path='/cancel' element={<PaymentCancel/>}/>
         <Route path='*' element={<Error/>}/>
       </Route>
     </Route>

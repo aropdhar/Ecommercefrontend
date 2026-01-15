@@ -11,14 +11,36 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addtocart } from '../../../Features/AllSlice/ProductSlice'
 import { RiDeleteBin5Line } from 'react-icons/ri'
 import { wishlistadd } from '../../../Features/AllSlice/wishListSlice'
+import { AxiosInstance } from '../axios/AxiosInstance'
+import { SuccessToast } from '../../../utils/toast'
 
 const Productcard = ({itemData , whishlistRemove}) => {
   
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  
-  const handlecart = (productItem) =>{ 
-      dispatch(addtocart(productItem));
+  const [loading , setloading] = useState(false);
+  const [quantity , setQuantity] = useState(1);
+
+
+  const handlecart = async (productItem) =>{ 
+      setloading(true)
+    try {
+      const response = await AxiosInstance.post('/cart' ,{
+         product: productItem._id,
+      },{
+        withCredentials: true
+      })
+      console.log(response);
+      
+      if(response?.statusText.toLowerCase() == "OK".toLowerCase()){
+        SuccessToast(response.data.message)
+      }
+    } catch (error) {
+      console.error("Error From Add To Cart" , error);
+    }finally{
+      setloading(false)
+      setQuantity(1)
+    }
   }
   
   const handleproduct = (productId) =>{

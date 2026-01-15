@@ -4,10 +4,11 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 // Define a service using a base URL and expected endpoints
 export const exclusiveApi = createApi({
   reducerPath: 'exclusiveApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000/api/v1/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000/api/v1/' , credentials: 'include' }),
+  tagTypes: ["Cart"],
   endpoints: (builder) => ({
     GetAllCategory: builder.query({
-      query: () => "/allcategory",
+      query: () => "/allcategory", 
     }),
     GetSingleCategory: builder.query({
       query: (id) => `/singleallcategory/${id}`,
@@ -27,9 +28,21 @@ export const exclusiveApi = createApi({
     GetAllSingleProduct: builder.query({
       query: (id) => `/singleproduct/${id}`,
     }),
+     GetUserWiseCart: builder.query({
+      query: () => `/userwisecart`,
+      providesTags: ["Cart"],
+    }),
+    DeleteCartItem: builder.mutation({
+      query: (itemId) => ({
+        url: `/deletecart/${itemId}`,
+        method: "DELETE",
+      }),
+      // Invalidate the 'Cart' tag to trigger re-fetching of GetAllCart query
+      invalidatesTags: ["Cart"],
+    }),
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetAllCategoryQuery , useGetAllBannerQuery , useGetAllFlashSaleQuery , useGetAllBestSellingQuery , useGetAllProductQuery , useGetAllSingleProductQuery , useGetSingleCategoryQuery } = exclusiveApi
+export const { useGetAllCategoryQuery , useGetAllBannerQuery , useGetAllFlashSaleQuery , useGetAllBestSellingQuery , useGetAllProductQuery , useGetAllSingleProductQuery , useGetSingleCategoryQuery , useGetUserWiseCartQuery , useDeleteCartItemMutation } = exclusiveApi
