@@ -15,9 +15,6 @@ const Addtocart = () => {
    //   const total = useSelector((state) => state.ProductStore)
      const { data, error, isLoading } = useGetUserWiseCartQuery();
      
-     console.log(data?.data?.cart?.length);
-     
-     
      const CartItem = data?.data?.cart?.map((item)=>{
 
        const AllCartItem = {}
