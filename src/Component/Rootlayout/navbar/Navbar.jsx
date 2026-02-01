@@ -49,8 +49,8 @@ const Navbar = () => {
         },
         {
             id: 3,
-            item: "About",
-            pathRoute: "about"
+            item: "Product",
+            pathRoute: "productdetails"
             
         },
         {
@@ -103,7 +103,7 @@ const Navbar = () => {
                             <Link to={'/addtocart'} className='text-[32px] text-text_000000 cursor-pointer cartno'>
                                 <BsCart3 />
                             </Link>
-                            {product?.totalItem > 0 &&(
+                            {data?.data?.cart?.length > 0 &&(
                               <span className='absolute left-[60%] top-[-25%] bg-button_DB4444 w-[28px] h-[28px] text-center rounded-[50%] text-[20px] leading-[25px] text-white'>{data?.data?.cart?.length}</span>
                             )}
                          </div>

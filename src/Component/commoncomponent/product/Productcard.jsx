@@ -7,38 +7,33 @@ import UsediscountPrice from '../../../hooks/UsediscountPrice'
 import Star from '../star/Star'
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux'
-import { addtocart } from '../../../Features/AllSlice/ProductSlice'
+import { useDispatch } from 'react-redux'
 import { RiDeleteBin5Line } from 'react-icons/ri'
 import { wishlistadd } from '../../../Features/AllSlice/wishListSlice'
-import { AxiosInstance } from '../axios/AxiosInstance'
 import { SuccessToast } from '../../../utils/toast'
+import { useAddtoCartMutation } from '../../../Features/Api/exclusiveApi'
 
 const Productcard = ({itemData , whishlistRemove}) => {
   
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const [loading , setloading] = useState(false);
+  
   const [quantity , setQuantity] = useState(1);
-
+  const[AddtoCart, {data, error, isLoading}] = useAddtoCartMutation();
 
   const handlecart = async (productItem) =>{ 
-      setloading(true)
-    try {
-      const response = await AxiosInstance.post('/cart' ,{
-         product: productItem._id,
-      },{
-        withCredentials: true
-      })
-      console.log(response);
       
-      if(response?.statusText.toLowerCase() == "OK".toLowerCase()){
+    try {
+      const response = await AddtoCart({
+        product: productItem._id,
+      })
+      
+      if(response){
         SuccessToast(response.data.message)
       }
     } catch (error) {
       console.error("Error From Add To Cart" , error);
     }finally{
-      setloading(false)
       setQuantity(1)
     }
   }
@@ -89,7 +84,7 @@ const Productcard = ({itemData , whishlistRemove}) => {
         
           
             <div className="opacity-0  w-full h-[41px] bg-text_000000  text-white_color absolute left-0 bottom-0 flex  justify-center items-center cursor-pointer font-poppins text-[16px] font-normal leading-[24px] group-hover:opacity-100 transition-all" onClick={()=>handlecart(itemData)}>
-              <h3>Add To Cart</h3>
+              <h3>{isLoading ? 'Loading....' : 'Add To Cart'}</h3>
             </div>
         </div>
         <div className='mt-[8px] flex flex-col gap-2 cursor-pointer'>

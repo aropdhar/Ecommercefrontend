@@ -4,19 +4,18 @@ import computer from '../../assets/computer.png'
 import { IoIosArrowDown, IoIosArrowUp, IoMdClose } from 'react-icons/io'
 import { useSelector } from 'react-redux'
 import { removecart , incrementCart , decrementCart , getTotal } from '../../Features/AllSlice/ProductSlice'
-import { useGetUserWiseCartQuery , useDeleteCartItemMutation} from '../../Features/Api/exclusiveApi'
+import { useGetUserWiseCartQuery , useDeleteCartItemMutation, useIncrementCartMutation, useDecrementCartMutation} from '../../Features/Api/exclusiveApi'
 import { SuccessToast } from '../../utils/toast'
 import { AxiosInstance } from '../../Component/commoncomponent/axios/AxiosInstance'
+import { Link } from 'react-router-dom'
 
 const Addtocart = () => {
      
-   //   const dispatch = useDispatch()
-   //   const product = useSelector((state) => state.ProductStore.value)
-   //   const total = useSelector((state) => state.ProductStore)
      const { data, error, isLoading } = useGetUserWiseCartQuery();
-     
-     const CartItem = data?.data?.cart?.map((item)=>{
+     const [IncrementCart , {incrementData}] = useIncrementCartMutation();
+     const [DecrementCart , {decrementCart}] = useDecrementCartMutation();
 
+     const CartItem = data?.data?.cart?.map((item)=>{
        const AllCartItem = {}
        const {product , quantity} = item;
        const {name , price , image } = product;
@@ -31,13 +30,6 @@ const Addtocart = () => {
      
      const totalcalculate = data?.data
      
-   //   get sub total 
-   
-   //   useEffect(()=>{
-      
-   //    dispatch(getTotal())
-
-   //   },[dispatch , localStorage.getItem('cartItem')])
      
      const [DeleteCartItem] = useDeleteCartItemMutation();
        
@@ -51,8 +43,46 @@ const Addtocart = () => {
          
       }
      }
+
      
-   
+     const handleincrement = async (incrementItem) =>{
+
+         try {
+
+            const response = await IncrementCart({
+               id: incrementItem.id,
+               type: "inc"
+            });
+            
+            if(response){
+               SuccessToast(response?.data?.message);
+            }
+         
+         } catch (error) {
+            console.error('increment error' , error);
+            
+         }
+     }
+     
+     
+     const handledecrement = async (decrementItem) =>{
+      try {
+         
+         const response = await DecrementCart({
+            id: decrementItem.id,
+            type: 'dec'
+         });
+
+         if(response){
+            SuccessToast(response?.data?.message)
+         }
+         
+      } catch (error) {
+         console.error("decrement error" , error);
+         
+      }
+     }
+
   return (
     <div className='mb-[84px]'>
       <div className="container">
@@ -134,7 +164,7 @@ const Addtocart = () => {
                       <h1>SubTotal:</h1>
                       <span>${totalcalculate?.totalprice}</span>
                 </div>
-                <button className='py-[16px] px-[48px] text-[16px] font-poppins font-medium rounded ml-[137px] text-white bg-button_DB4444 '>Process to Checkout</button>
+                <Link to={'/checkout'} className='py-[16px] px-[48px] text-[16px] font-poppins font-medium rounded ml-[137px] text-white bg-button_DB4444 '>Process to Checkout</Link>
             </div>
           </div>
       </div>

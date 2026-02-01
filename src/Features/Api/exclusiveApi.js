@@ -40,9 +40,33 @@ export const exclusiveApi = createApi({
       // Invalidate the 'Cart' tag to trigger re-fetching of GetAllCart query
       invalidatesTags: ["Cart"],
     }),
+    AddtoCart: builder.mutation({
+      query: (product) => ({
+        url: `/cart`,
+        method: "POST",
+        body: product
+      }),
+      invalidatesTags: ["Cart"],
+    }),
+    IncrementCart: builder.mutation({
+      query: ({id , type}) => ({
+        url: `/incrementcart/${id}`,
+        method: "POST",
+        body: type,
+      }),
+      invalidatesTags: ["Cart"],
+    }),
+     DecrementCart: builder.mutation({
+      query: ({id , type}) => ({
+        url: `/decrementcart/${id}`,
+        method: "POST",
+        body: type,
+      }),
+      invalidatesTags: ["Cart"],
+    }),
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetAllCategoryQuery , useGetAllBannerQuery , useGetAllFlashSaleQuery , useGetAllBestSellingQuery , useGetAllProductQuery , useGetAllSingleProductQuery , useGetSingleCategoryQuery , useGetUserWiseCartQuery , useDeleteCartItemMutation } = exclusiveApi
+export const { useGetAllCategoryQuery , useGetAllBannerQuery , useGetAllFlashSaleQuery , useGetAllBestSellingQuery , useGetAllProductQuery , useGetAllSingleProductQuery , useGetSingleCategoryQuery , useGetUserWiseCartQuery , useDeleteCartItemMutation , useAddtoCartMutation , useIncrementCartMutation , useDecrementCartMutation } = exclusiveApi

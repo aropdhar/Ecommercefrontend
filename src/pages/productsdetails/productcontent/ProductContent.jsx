@@ -7,12 +7,13 @@ import Returnicons from '../../../assets/return.png'
 import UsediscountPrice from '../../../hooks/UsediscountPrice'
 import { AxiosInstance } from '../../../Component/commoncomponent/axios/AxiosInstance'
 import { SuccessToast } from '../../../utils/toast'
+import { useAddtoCartMutation } from '../../../Features/Api/exclusiveApi'
 
 
 const ProductContent = ({ProductDetailsdata}) => {
   
   const {id} = useParams();
-  
+  const[AddtoCart, {data, error, isLoading}] = useAddtoCartMutation();
   
   
   const size = [
@@ -22,8 +23,7 @@ const ProductContent = ({ProductDetailsdata}) => {
     {id: 4 , size: 'L'},
     {id: 5 , size: 'XL'},
   ]
-  
-  const [loading , setloading] = useState(false);
+
   const [quantity , setQuantity] = useState(1);
   
   const handleDecrement = () =>{
@@ -34,23 +34,19 @@ const ProductContent = ({ProductDetailsdata}) => {
   
   
   const handleaddtocart = async () =>{
-    setloading(true)
+    
     try {
-      
-      const response = await AxiosInstance.post('/cart' ,{
-         product: id,
-         quantity: quantity
-      },{
-        withCredentials: true
+      const response = await AddtoCart({
+        product: id,
+        quantity: quantity
       })
       
-      if(response?.statusText.toLowerCase() == "OK".toLowerCase()){
+      if(response){
         SuccessToast(response?.data?.message)
       }
     } catch (error) {
       console.error("Error From Add To Cart" , error);
     }finally{
-      setloading(false)
       setQuantity(1)
     }
   }
@@ -99,7 +95,7 @@ const ProductContent = ({ProductDetailsdata}) => {
             <span onClick={()=>setQuantity(quantity + 1)} className='border-[2px] border-gray-300  rounded-r-[4px] text-[24px] font-bold w-[40px] h-[44px] flex items-center justify-center py-[5px] px-[8px] cursor-pointer hover:bg-button_DB4444 transition-all duration-300 hover:text-white'>+</span>
          </div>
          <div>
-          {loading ?
+          {isLoading ?
             (<button onClick={handleaddtocart} className='bg-button_DB4444 py-[10px] px-[48px] text-[16px] text-white font-medium leading-[24px] rounded'>Loading....</button>)
           :
 

@@ -44,7 +44,7 @@ const router = createBrowserRouter(
         <Route path='/checkout' element={<Checkout/>}/>
         <Route path='/verifyotp/:Email' element={<OtpVerify/>}/>
         <Route path='/success' element={<PaymentSuccess/>}/>
-        <Route path='/failed' element={<PaymentError/>}/>
+        <Route path='/fail' element={<PaymentError/>}/>
         <Route path='/cancel' element={<PaymentCancel/>}/>
         <Route path='*' element={<Error/>}/>
       </Route>
