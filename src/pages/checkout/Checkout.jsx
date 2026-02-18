@@ -6,22 +6,42 @@ import bkash from '../../assets/Bkash.png'
 import mastercard from '../../assets/Mastercard.png'
 import visa from '../../assets/Visa.png'
 import { useFormik } from 'formik';
+import { useGetUserWiseCartQuery } from '../../Features/Api/exclusiveApi'
 
 const Checkout = () => {
 
   const [payment, setPayment] = useState("bank");
-  const initialvalue = {
-    firstname: '',
-    lastname: '',
-    email: '',
-    number: '',
-    address1: '',
-    address2: '',
-    city: '',
-    district: '',
-    postcode: ''
-  }
+  const { data, error, isLoading } = useGetUserWiseCartQuery();
+  console.log(data?.data?.cart);
 
+  const checkitem = data?.data?.cart?.reduce((initialvalue , item)=>{
+    initialvalue.user = item.user;
+    return initialvalue
+
+  },{user: {}}) 
+  
+//   localStorage.setItem('users' , JSON.stringify(data?.data?.cart?.user));
+//   const userInfo = localStorage.getItem('users');
+//   console.log(userInfo);
+  
+  
+
+  const initialvalue = {
+    firstname: checkitem?.user?.FirstName,
+    lastname: 'Deo',
+    email: checkitem?.user?.Email_Adress,
+    number: '01700000000',
+    address1: 'Dhaka,Bangladesh',
+    address2: 'Dhaka,Bangladesh',
+    city: 'Dhaka',
+    district: 'Dhaka',
+    postcode: '1204',
+    paymentMethod: 'Online'
+  }
+  
+  
+  
+  
 
     const formik = useFormik({
      initialValues: initialvalue,
@@ -29,8 +49,10 @@ const Checkout = () => {
        console.log(values);
      },
    });
-  
-  
+   
+   const handlefocus = (e) =>{
+      e.target.value = ""
+   }
 
   return (
     <div className='mt-[181px] mb-[140px]'>
@@ -41,39 +63,39 @@ const Checkout = () => {
                     <div className='flex flex-wrap gap-3'>
                         <div className='flex flex-col gap-y-[8px]'>
                             <label className='text-[16px] font-poppins font-normal leading-[24px] text-button_DB4444 opacity-[0.5]' htmlFor="name">First Name*</label>
-                            <input className='w-[345px] bg-[#F5F5F5] rounded py-[10px] pl-[10px]' type="text" id="firstname" name="firstname" onChange={formik.handleChange} value={formik.values.firstname} />
+                            <input className='w-[345px] bg-[#F5F5F5] rounded py-[10px] pl-[10px]' type="text" id="firstname" name="firstname" onChange={formik.handleChange} value={formik.values.firstname} placeholder='firstname' onFocusCapture={handlefocus}/>
                         </div>
                         <div className='flex flex-col gap-y-[8px]'>
                             <label className='text-[16px] font-poppins font-normal leading-[24px] text-button_DB4444 opacity-[0.5]' htmlFor="company">Last Name</label>
-                            <input className='w-[345px] bg-[#F5F5F5] rounded py-[10px] pl-[10px]' type="text" id="lastname" name="lastname" onChange={formik.handleChange} value={formik.values.lastname} />
+                            <input className='w-[345px] bg-[#F5F5F5] rounded py-[10px] pl-[10px]' type="text" id="lastname" name="lastname" onChange={formik.handleChange} value={formik.values.lastname} placeholder='lastname' onFocusCapture={handlefocus}/>
                         </div>
                         <div className='flex flex-col gap-y-[8px]'>
                             <label className='text-[16px] font-poppins font-normal leading-[24px] text-button_DB4444 opacity-[0.5]' htmlFor="apart">Email Address</label>
-                            <input className='w-[345px] bg-[#F5F5F5] rounded py-[10px] pl-[10px]' type="email" id="email" name="email" onChange={formik.handleChange} value={formik.values.email} />
+                            <input className='w-[345px] bg-[#F5F5F5] rounded py-[10px] pl-[10px]' type="email" id="email" name="email" onChange={formik.handleChange} value={formik.values.email} placeholder='email' onFocusCapture={handlefocus}/>
                         </div>
                         <div className='flex flex-col gap-y-[8px]'>
                             <label className='text-[16px] font-poppins font-normal leading-[24px] text-button_DB4444 opacity-[0.5]' htmlFor="city">Phone Number</label>
-                            <input className='w-[345px] bg-[#F5F5F5] rounded py-[10px] pl-[10px]' type="number" id="number" name="number" onChange={formik.handleChange} value={formik.values.number} />
+                            <input className='w-[345px] bg-[#F5F5F5] rounded py-[10px] pl-[10px]' type="number" id="number" name="number" onChange={formik.handleChange} value={formik.values.number} placeholder='number' onFocusCapture={handlefocus}/>
                         </div>
                         <div className='flex flex-col gap-y-[8px]'>
                             <label className='text-[16px] font-poppins font-normal leading-[24px] text-button_DB4444 opacity-[0.5]' htmlFor="phone">Address 1</label>
-                            <input className='w-[345px] bg-[#F5F5F5] rounded py-[10px] pl-[10px]' type="text" id="address1" name="address1" onChange={formik.handleChange} value={formik.values.address1} />
+                            <input className='w-[345px] bg-[#F5F5F5] rounded py-[10px] pl-[10px]' type="text" id="address1" name="address1" onChange={formik.handleChange} value={formik.values.address1} placeholder='address1' onFocusCapture={handlefocus}/>
                         </div>
                         <div className='flex flex-col gap-y-[8px]'>
                             <label className='text-[16px] font-poppins font-normal leading-[24px] text-button_DB4444 opacity-[0.5]' htmlFor="email">Address 2</label>
-                            <input className='w-[345px] bg-[#F5F5F5] rounded py-[10px] pl-[10px]' type="text" id="address2" name="address2" onChange={formik.handleChange} value={formik.values.address2} />
+                            <input className='w-[345px] bg-[#F5F5F5] rounded py-[10px] pl-[10px]' type="text" id="address2" name="address2" onChange={formik.handleChange} value={formik.values.address2} placeholder='address2' onFocusCapture={handlefocus}/>
                         </div>
                         <div className='flex flex-col gap-y-[8px]'>
                             <label className='text-[16px] font-poppins font-normal leading-[24px] text-button_DB4444 opacity-[0.5]' htmlFor="email">City</label>
-                            <input className='w-[345px] bg-[#F5F5F5] rounded py-[10px] pl-[10px]' type="text" id="city" name="city" onChange={formik.handleChange} value={formik.values.city} />
+                            <input className='w-[345px] bg-[#F5F5F5] rounded py-[10px] pl-[10px]' type="text" id="city" name="city" onChange={formik.handleChange} value={formik.values.city} placeholder='city' onFocusCapture={handlefocus} />
                         </div>
                         <div className='flex flex-col gap-y-[8px]'>
                             <label className='text-[16px] font-poppins font-normal leading-[24px] text-button_DB4444 opacity-[0.5]' htmlFor="email">District</label>
-                            <input className='w-[345px] bg-[#F5F5F5] rounded py-[10px] pl-[10px]' type="text" id="district" name="district" onChange={formik.handleChange} value={formik.values.district} />
+                            <input className='w-[345px] bg-[#F5F5F5] rounded py-[10px] pl-[10px]' type="text" id="district" name="district" onChange={formik.handleChange} value={formik.values.district} placeholder='district' onFocusCapture={handlefocus}/>
                         </div>
                         <div className='flex flex-col gap-y-[8px]'>
                             <label className='text-[16px] font-poppins font-normal leading-[24px] text-button_DB4444 opacity-[0.5]' htmlFor="email">Post Code</label>
-                            <input className='w-[345px] bg-[#F5F5F5] rounded py-[10px] pl-[10px]' type="number" id="postcode" name="postcode" onChange={formik.handleChange} value={formik.values.postcode} />
+                            <input className='w-[345px] bg-[#F5F5F5] rounded py-[10px] pl-[10px]' type="number" id="postcode" name="postcode" onChange={formik.handleChange} value={formik.values.postcode} placeholder='postcode' onFocusCapture={handlefocus}/>
                         </div>
                         
                     </div>
@@ -81,28 +103,20 @@ const Checkout = () => {
                         <input className='w-[24px] h-[24px]' type="checkbox" value={"Save this information for faster check-out next time"} />
                         <label htmlFor="check">Save this information for faster check-out next time</label>
                     </div>
+                    <button type='submit'>submit</button>
                 </form>
                 <div>
                     <div className='h-[180px] overflow-y-scroll flex flex-col gap-y-7'>
-                        {[...new Array(8)].map((_ , index)=>(
+                        {data?.data?.cart.map((item , index)=>(
                             <>
                                 <div className='flex items-center justify-between'>
                                     <div className='flex items-center gap-x-[24px]'>
                                         <div className='w-[54px] h-[54px] overflow-hidden'>
-                                            <img className='w-full h-full object-contain' src={desktop} alt={desktop} />
+                                            <img className='w-full h-full object-contain' src={item?.product?.image} alt={item?.product?.image} />
                                         </div>
-                                        <span>LCD Monitor</span>
+                                        <span>{item?.product?.name}</span>
                                     </div>
-                                    <span>$650</span>
-                                </div>
-                                <div className='flex items-center justify-between'>
-                                    <div className='flex items-center gap-x-[24px]'>
-                                        <div className='w-[54px] h-[54px] overflow-hidden'>
-                                            <img className='w-full h-full object-contain' src={joystick} alt={joystick} />
-                                        </div>
-                                        <span>H1 Gamepad</span>
-                                    </div>
-                                    <span>$1100</span>
+                                    <span>{item?.product?.price}</span>
                                 </div>
                             </>
                         ))
@@ -112,34 +126,24 @@ const Checkout = () => {
                     
                     <div className=' py-[32px] rounded'>
                         <div className='flex items-center border-b-2 border-black pb-[16px] justify-between w-[470px] mt-[24px]'>
-                            <h1>Subtotal:</h1>
-                            <span>$1750</span>
+                            <h1>Quantity:</h1>
+                            <span>{data?.data?.totalquantity}</span>
                         </div>
                         <div className='flex items-center border-b-2 border-black pb-[16px] justify-between w-[470px] mt-[24px]'>
                             <h1>Shipping:</h1>
                             <span>Free</span>
                         </div>
                         <div className='flex items-center  pb-[16px] justify-between w-[470px] mt-[24px]'>
-                            <h1>Total:</h1>
-                            <span>$1750</span>
+                            <h1>SubTotal:</h1>
+                            <span>{data?.data?.totalprice}</span>
                         </div>
+                        {/* bank statement  */}
                         <div className="space-y-4">
                         {/* BANK */}
-                            <div
-                                onClick={() => setPayment("bank")}
-                                className={`flex items-center justify-between p-4 rounded-lg cursor-pointer border
-                                ${payment === "bank"
-                                    ? "text-black"
-                                    : "border-gray-300"
-                                }`}
-                            >
+                            <div onClick={() => formik.setFieldValue("paymentMethod", "Online")} className={`flex items-center justify-between p-4 rounded-lg cursor-pointer border ${formik.values.paymentMethod === "Online" ? "border-black" : "border-gray-300"}`}>
                                 <div className="flex items-center gap-x-4">
-                                <input
-                                    type="radio"
-                                    checked={payment === "bank"}
-                                    onChange={() => setPayment("bank")}
-                                />
-                                <label>Bank</label>
+                                    <input type="radio" name="paymentMethod" value="Online" checked={formik.values.paymentMethod === "Online"}  onChange={() => formik.setFieldValue("paymentMethod", "Online")} className='cursor-pointer'/>
+                                    <label>Online</label>
                                 </div>
 
                                 <div className="flex items-center gap-x-2">
@@ -151,19 +155,9 @@ const Checkout = () => {
                             </div>
 
                             {/* CASH ON DELIVERY */}
-                            <div
-                                onClick={() => setPayment("Cash On Delivery")}
-                                className={`flex items-center p-4 rounded-lg cursor-pointer border
-                                ${payment === "Cash On Delivery"
-                                    ? "text-black"
-                                    : "border-gray-300"
-                                }`}
-                            >
-                                <input
-                                type="radio"
-                                checked={payment === "Cash On Delivery"}
-                                onChange={() => setPayment("Cash On Delivery")}
-                                />
+                            <div  onClick={() => formik.setFieldValue("paymentMethod", "cash")}  className={`flex items-center p-4 rounded-lg cursor-pointer border
+                            ${formik.values.paymentMethod === "cash" ? "border-black" : "border-gray-300"}`}>
+                                <input type="radio" name="paymentMethod" value="cash" checked={formik.values.paymentMethod === "cash"} onChange={() => formik.setFieldValue("paymentMethod", "cash")} className='cursor-pointer'/>
                                 <label className="ml-4">Cash on delivery</label>
                             </div>
                         </div>

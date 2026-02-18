@@ -2,18 +2,24 @@ import React, { useEffect, useState } from 'react'
 import Breadcrum from '../../Component/commoncomponent/breadcrum/Breadcrum'
 import computer from '../../assets/computer.png'
 import { IoIosArrowDown, IoIosArrowUp, IoMdClose } from 'react-icons/io'
-import { useSelector } from 'react-redux'
-import { removecart , incrementCart , decrementCart , getTotal } from '../../Features/AllSlice/ProductSlice'
+import { useDispatch, useSelector } from 'react-redux'
 import { useGetUserWiseCartQuery , useDeleteCartItemMutation, useIncrementCartMutation, useDecrementCartMutation} from '../../Features/Api/exclusiveApi'
 import { SuccessToast } from '../../utils/toast'
 import { AxiosInstance } from '../../Component/commoncomponent/axios/AxiosInstance'
 import { Link } from 'react-router-dom'
+import { getTotalItem } from '../../Features/AllSlice/cartSlice'
 
 const Addtocart = () => {
      
+     const dispatch = useDispatch()
      const { data, error, isLoading } = useGetUserWiseCartQuery();
      const [IncrementCart , {incrementData}] = useIncrementCartMutation();
      const [DecrementCart , {decrementCart}] = useDecrementCartMutation();
+     
+     if(!isLoading && !error){
+       dispatch(getTotalItem(data))
+     }
+
 
      const CartItem = data?.data?.cart?.map((item)=>{
        const AllCartItem = {}
