@@ -64,9 +64,16 @@ export const exclusiveApi = createApi({
       }),
       invalidatesTags: ["Cart"],
     }),
+     placeOrder: builder.mutation({
+      query: (orderinfo) => ({
+        url: `/order`,
+        method: "POST",
+        body: orderinfo
+      }),
+    }),
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetAllCategoryQuery , useGetAllBannerQuery , useGetAllFlashSaleQuery , useGetAllBestSellingQuery , useGetAllProductQuery , useGetAllSingleProductQuery , useGetSingleCategoryQuery , useGetUserWiseCartQuery , useDeleteCartItemMutation , useAddtoCartMutation , useIncrementCartMutation , useDecrementCartMutation } = exclusiveApi
+export const { useGetAllCategoryQuery , useGetAllBannerQuery , useGetAllFlashSaleQuery , useGetAllBestSellingQuery , useGetAllProductQuery , useGetAllSingleProductQuery , useGetSingleCategoryQuery , useGetUserWiseCartQuery , useDeleteCartItemMutation , useAddtoCartMutation , useIncrementCartMutation , useDecrementCartMutation , usePlaceOrderMutation } = exclusiveApi
