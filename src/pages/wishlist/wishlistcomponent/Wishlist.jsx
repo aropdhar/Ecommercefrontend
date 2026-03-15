@@ -9,7 +9,9 @@ import { useSelector } from 'react-redux';
 const WishlistComponent = () => {
     const {data , error , isLoading} = useGetAllProductQuery();
     const justforyou = useGetProductCategoryQuery("smartphones");  
-    const wishlistItem = useSelector((state) => state.wishListStore.value)
+    const wishlistItem = useSelector((state) => state.wishListStore.value) || []
+    const wishlistArray = Object.values(wishlistItem);
+    
     
     let settings = {
         dots: false,
@@ -33,8 +35,8 @@ const WishlistComponent = () => {
           
           {/* wishlist product list */}
           <Slider {...settings}>
-            {wishlistItem?.map((item)=>(
-                <div className='pr-[15px]'>
+            {wishlistArray?.map((item)=>(
+                <div className='pr-[15px] flex'>
                     <Productcard whishlistRemove={true} itemData={item}/>
                 </div>
             ))
