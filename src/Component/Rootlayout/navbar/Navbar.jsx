@@ -5,9 +5,9 @@ import { IoIosCloseCircleOutline, IoMdSearch } from 'react-icons/io';
 import { LuUser } from 'react-icons/lu';
 import { PiShoppingBagOpenLight } from 'react-icons/pi';
 import { Link, NavLink } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux'
+import { useAddtoCartMutation } from '../../../Features/Api/exclusiveApi';
 import { useGetUserWiseCartQuery } from '../../../Features/Api/exclusiveApi';
-
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
 
