@@ -45,20 +45,20 @@ import {useSelector , useDispatch } from 'react-redux'
 const Category = () => {
 
   const dispatch = useDispatch();
-  const { data, error, isLoading } = useGetAllCategoryQuery();
+  const { data, error, isLoading, isSuccess} = useGetAllCategoryQuery();
   const isDataDispatched = useRef(false);
   
 
   useEffect(()=>{
-    if(isLoading == false && isDataDispatched.current == false){
+    if(isSuccess && data?.data && !isDataDispatched.current){
       dispatch(getCategory(data?.data));
       isDataDispatched.current = true;
     }
-  }, [isLoading , dispatch , data])
+  }, [isSuccess , dispatch , data])
 
  
   let newArr = [];
-  data?.data.map((item) => {
+  data?.data?.map((item) => {
     newArr.push({
       id: item?._id,
       name: item?.title,

@@ -1,16 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
-  value: localStorage.getItem("category")  ? JSON.parse(localStorage.getItem("category")) : [],
+let storedValue = [];
+try {
+  const raw = localStorage.getItem("category");
+  storedValue = raw ? JSON.parse(raw) : [];
+} catch (e) {
+  storedValue = [];
 }
+
+const initialState = {
+  value: storedValue,
+};
 
 export const counterSlice = createSlice({
   name: 'category',
   initialState: initialState,
   reducers: {
     getCategory: (state, action) => {
-      state.value = action.payload;
-      localStorage.setItem("category" , JSON.stringify(state.value))   
+      if (action.payload) {
+        state.value = action.payload;
+        localStorage.setItem("category", JSON.stringify(action.payload));
+      } 
     },
   },
 })
