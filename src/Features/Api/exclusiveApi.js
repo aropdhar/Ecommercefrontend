@@ -28,7 +28,15 @@ export const exclusiveApi = createApi({
     GetAllSingleProduct: builder.query({
       query: (id) => `/singleproduct/${id}`,
     }),
-     GetUserWiseCart: builder.query({
+    AddtoCart: builder.mutation({
+      query: (product) => ({
+        url: `/cart`,
+        method: "POST",
+        body: product
+      }),
+      invalidatesTags: ["Cart"],
+    }),
+    GetUserWiseCart: builder.query({
       query: () => `/userwisecart`,
       providesTags: ["Cart"],
     }),
@@ -38,14 +46,6 @@ export const exclusiveApi = createApi({
         method: "DELETE",
       }),
       // Invalidate the 'Cart' tag to trigger re-fetching of GetAllCart query
-      invalidatesTags: ["Cart"],
-    }),
-    AddtoCart: builder.mutation({
-      query: (product) => ({
-        url: `/cart`,
-        method: "POST",
-        body: product
-      }),
       invalidatesTags: ["Cart"],
     }),
     IncrementCart: builder.mutation({
