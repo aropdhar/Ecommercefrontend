@@ -9,6 +9,8 @@ const Bestseling = () => {
   // const { data, error, isLoading } = useGetBestSellingProductsQuery();
  
   const { data, error, isLoading } = useGetAllBestSellingQuery();
+  const [show , setShow] = useState(false);
+  const vesiblebestselling = Math.ceil(data?.data?.length/4)
  
 
   const bestsellingproduct = data?.data?.map((item)=>{
@@ -25,6 +27,9 @@ const Bestseling = () => {
               description="Best Selling Products"
               componentData={bestsellingproduct}
               isButton={true}
+              setShow={setShow}
+              show={show}
+              rows={show ? vesiblebestselling : 1}
         />
       </div>
           

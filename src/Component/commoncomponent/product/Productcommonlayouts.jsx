@@ -17,7 +17,9 @@ const Productcommonlayouts = ({
   partialItem = 4,
   componentData = [],
   isLoading = false,
-  rows = 1
+  rows = 1,
+  show,
+  setShow
   
 }) => {
   const sliderRef = useRef(null);
@@ -78,8 +80,8 @@ const Productcommonlayouts = ({
                 </div>
               )}
               {isButton &&
-                <div className="bg-button_DB4444  text-md font-popins font-medium text-white_color px-[48px] py-4 rounded cursor-pointer hover:opacity-75 transition-all">
-                View All
+                <div onClick={()=>setShow(!show ? true : false)} className="bg-button_DB4444  text-md font-popins font-medium text-white_color px-[48px] py-4 rounded cursor-pointer hover:opacity-75 transition-all">
+                  {show ? "View Less" : 'View All'}
                 </div>
               }
             </div>

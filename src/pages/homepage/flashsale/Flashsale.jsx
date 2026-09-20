@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Productcard from '../../../Component/commoncomponent/product/Productcard'
 import Productcommonlayouts from '../../../Component/commoncomponent/product/Productcommonlayouts';
 import { useGetAllFlashSaleQuery } from '../../../Features/Api/exclusiveApi';
@@ -9,14 +9,14 @@ const Flashsale = () => {
   //  const { data, error, isLoading } = useGetAllProductQuery(); 
   const { data, error, isLoading } = useGetAllFlashSaleQuery();
   // const timedate = parseInt(data?.data[0]?.offerDate?.offerDate);
-  
+  const [show , setShow] = useState(false)
   
 
   const flashSaleProducts = data?.data.map((item)=>{
     return item.productId    
   });
 
-  
+  const visibleproductall = data?.data?.length/4;
   
   const timeDate = 3;
   
@@ -34,10 +34,11 @@ const Flashsale = () => {
             description="Flash Sales"
             componentData ={flashSaleProducts}
             isLoading = {isLoading}
+            rows={show ? visibleproductall : 1}
           />
           <div className="pb-20 mt-[80px]">
-            <button className="px-[48px] py-4 bg-button_DB4444 rounded text-md font-popins font-medium text-white_color hover:opacity-75 cursor-pointer ">
-              View All Products
+            <button onClick={()=>setShow(!show ? true : false)} className="px-[48px] py-4 bg-button_DB4444 rounded text-md font-popins font-medium text-white_color hover:opacity-75 cursor-pointer ">
+             {show ? "Show Less Product" : "View All Products"}
             </button>
           </div>
         </div>
