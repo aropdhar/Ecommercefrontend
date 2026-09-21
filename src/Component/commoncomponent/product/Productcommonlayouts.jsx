@@ -29,7 +29,7 @@ const Productcommonlayouts = ({
     dots: false,
     infinite: true,
     slidesToShow: partialItem,
-    slidesToScroll: partialItem -1,
+    slidesToScroll: partialItem,
     autoplay: true,
     rows: rows
 
@@ -88,23 +88,25 @@ const Productcommonlayouts = ({
 
           {/* product section */}
             <div className="slider-container">
-              <Slider ref={sliderRef} {...settings}>
-                {isLoading ?
-                   ([...new Array(8)].map((item , index)=>(
-                    <div className={partialItem > 4 ? 'pr-10' :'pr-[24px]'}>
-                      <ProductSkeleton/>
-                    </div>
-                  )))
+              <div key={rows} className="product-grid-fade">
+                <Slider ref={sliderRef} {...settings}>
+                  {isLoading ?
+                    ([...new Array(8)].map((item , index)=>(
+                      <div className={partialItem > 4 ? 'pr-10' :'pr-[24px]'}>
+                        <ProductSkeleton/>
+                      </div>
+                    )))
 
-                  :
-                  componentData.map((item , index)=>(
-                    <div className={partialItem > 4 ? 'pr-10' :'pr-[24px]'}>
-                      <Productcard itemData={item ? item : {}}/>
-                    </div>
-                  ))
-                }
-                
-              </Slider>
+                    :
+                    componentData.map((item , index)=>(
+                      <div className={partialItem > 4 ? 'pr-10' :'pr-[24px]'}>
+                        <Productcard itemData={item ? item : {}}/>
+                      </div>
+                    ))
+                  }
+                  
+                </Slider>
+              </div>
             </div>
         </div>
       </div>
