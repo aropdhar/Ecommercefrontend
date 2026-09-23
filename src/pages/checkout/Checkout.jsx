@@ -86,13 +86,11 @@ const Checkout = () => {
      },
    });
    
-   const handlefocus = (e) =>{
-       const { name , value} = e.target;
-       if(name == "firstname" || name == "email"){
-          value = e.target.value
-       }else{
-         e.target.value = ""
-       }
+  const handlefocus = (e) => {
+        const { name } = e.target;
+        if(name !== "firstname" && name !== "email"){
+        e.target.value = ""
+        }
    }
    
   
