@@ -77,7 +77,7 @@ const Navbar = () => {
                           to={`/${nav.pathRoute}`}
                           className={({ isPending , isActive }) =>
                             isPending ? "text-black text-[17px] font-Inter font-normal" 
-                          : isActive ? "text-red text-[17px] font-Inter font-normal" : "text-text_000000 text-[17px] font-Inter font-normal"
+                          : isActive ? "text-red text-[17px] font-Inter font-normal border-b-2 border-b-text_7D8184" : "text-text_000000 text-[17px] font-Inter font-normal"
                           }
                         >
                           {nav.item}
